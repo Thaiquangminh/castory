@@ -8,10 +8,10 @@
         },
       ]"
     >
-      <v-col cols="12" md="6" sm="12" xs="12">
-        <v-card elevation="0">
-          <img class="login-image" src="/images/logo.jpg" />
-        </v-card>
+      <v-col cols="12" md="3" sm="12" xs="12">
+        <v-flex :class="[{ 'login-flex-image': $vuetify.breakpoint.mdAndUp }]">
+          <img class="login-image" src="/images/logo.svg" />
+        </v-flex>
       </v-col>
       <v-col
         cols="12"
@@ -42,8 +42,9 @@
                   },
                 ]"
               >
-                <label class="mb-2 login-label">User name</label>
+                <label class="mb-2 login-label" id="username">User name</label>
                 <input
+                  name="username"
                   class="login-input"
                   placeholder="Type in your username"
                 />
@@ -66,7 +67,7 @@
   </v-container>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .login-wrapper, .login-group-form-card
   background-color: #F3F4FD !important
 
@@ -86,14 +87,23 @@
 .castory
   color: #453FE3
 
+.number input
+  display: inline-block
+  width: 123px
+  height: 21px
+  background-repeat: no-repeat
+  background-position: 96px 0
+  vertical-align: middle
+
+
 // ---------- FORM CSS ------------ //
 form
   display: flex
   flex-direction: column
 
 .login-image
-  height: 300px
-  width: 300px
+  height: 400px
+  width: 400px
   object-fit: contain
 
 .login-group-form
@@ -126,6 +136,10 @@ form
 // --------------- MOBI --------------- //
 .height-sm
   height: unset
+
+.login-flex-image
+  display: flex
+  justify-content: end
 
 .login-group-sm
   padding-left: 12px
