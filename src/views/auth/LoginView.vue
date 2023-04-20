@@ -9,8 +9,8 @@
       ]"
     >
       <v-col cols="12" md="6" sm="12" xs="12">
-        <v-flex :class="[{ 'login-flex-image': $vuetify.breakpoint.mdAndUp }]">
-          <img class="login-image" src="@/assets/images/logo.svg" />
+        <v-flex :class="$vuetify.breakpoint.mdAndUp ? 'login-flex-image' : ''">
+          <img class="login-image" src="@/assets/images/logo.svg" alt="" />
         </v-flex>
       </v-col>
       <v-col
