@@ -10,7 +10,7 @@
     >
       <v-col cols="12" md="6" sm="12" xs="12">
         <v-flex :class="[{ 'login-flex-image': $vuetify.breakpoint.mdAndUp }]">
-          <img class="login-image" src="@/assets/logo.svg" />
+          <img class="login-image" src="@/assets/images/logo.svg" />
         </v-flex>
       </v-col>
       <v-col
@@ -34,7 +34,7 @@
             <div>Log in to start learning</div>
           </v-card-subtitle>
           <v-card-text>
-            <form>
+            <form @submit.prevent="handleSubmitForm">
               <v-row
                 :class="[
                   'login-group-form',
@@ -43,15 +43,21 @@
                   },
                 ]"
               >
-                <label class="mb-2 login-label" for="username">User name</label>
-                <InputComponent :inputProps="usernameInput" />
+                <label class="login-label" for="username">User name</label>
+                <InputComponent
+                  :inputProps="usernameInput"
+                  v-model.trim="username"
+                />
               </v-row>
               <v-row class="login-group-form">
-                <label class="mb-2 login-label" for="password">Password</label>
-                <InputComponent :inputProps="passwordInput" />
+                <label class="login-label" for="password">Password</label>
+                <InputComponent
+                  :inputProps="passwordInput"
+                  v-model.trim="password"
+                />
               </v-row>
               <v-row class="login-group-form">
-                <v-btn text class="login-btn">Login</v-btn>
+                <v-btn type="submit" text class="login-btn">Login</v-btn>
               </v-row>
             </form>
           </v-card-text>
@@ -66,16 +72,23 @@ export default {
   data() {
     return {
       usernameInput: {
-        type: "text",
+        typeInput: "text",
         placeholder: "Type in your username",
         id: "username",
       },
       passwordInput: {
-        type: "password",
+        typeInput: "password",
         placeholder: "Type in your password",
         id: "password",
       },
+      username: "",
+      password: "",
     };
+  },
+  methods: {
+    handleSubmitForm() {
+      console.log(this.username, this.password);
+    },
   },
 };
 </script>
@@ -98,6 +111,8 @@ export default {
 .login-image
   height: 100%
   width: 100%
+  max-height: 677px
+  max-width: 683px
   object-fit: contain
 
 .castory
@@ -112,12 +127,6 @@ form
     flex-direction: column
     padding-left: 16px
     margin-right: 4px
-    //.login-input
-    //  padding: 16px 0 16px 16px
-    //  border: 1px solid #D9DFEA
-    //  border-radius: 12px
-    //  margin-bottom: 24px
-    //  background-color: #F9FBFC
     .login-label
       font-size: 16px
       font-weight: 600

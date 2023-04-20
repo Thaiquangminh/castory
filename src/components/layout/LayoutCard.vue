@@ -1,21 +1,21 @@
 <template>
   <v-container fluid>
-    <v-row class="layout-row mt-8">
+    <v-row class="d-flex justify-center align-center mt-8">
       <v-col cols="12" md="8">
         <v-card elevation="0">
-          <v-card-subtitle class="layout-subtitle">
+          <v-card-subtitle class="pa-0">
             <p class="mb-1">{{ subtitle }}</p>
           </v-card-subtitle>
-          <v-card-title class="layout-title">
+          <v-card-title class="pa-0">
             <h4>{{ title }}</h4>
           </v-card-title>
-          <v-row class="layout-row-content">
+          <v-row class="d-flex justify-center">
             <v-col cols="12" md="10">
               <v-card class="layout-card-wrapper" elevation="0">
                 <v-row class="ma-0">
-                  <v-col cols="12" class="layout-card-actions">
+                  <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
-                    <img src="/images/menu.svg" />
+                    <img src="@/assets/icons/menu.svg" />
                   </v-col>
                 </v-row>
                 <slot></slot>
@@ -39,30 +39,11 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.layout-row
-  display: flex
-  justify-content: center
-  align-items: center
-
-.layout-title
-  padding: 0
-
-.layout-subtitle
-  padding: 0
-
-.layout-row-content
-  display: flex
-  justify-content: center
-
 .layout-card-wrapper
   margin-top: 56px
   border-radius: 16px
   background-color: #F9FBFC
   min-height: 585px
-
-.layout-card-actions
-  display: flex
-  justify-content: space-between
   padding: 24px
 
 .layout-type
