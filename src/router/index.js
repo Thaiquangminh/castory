@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import LoginView from "@/views/auth/LoginView.vue";
 import CardView from "@/views/card/CardView.vue";
 import ListView from "@/views/list/ListView.vue";
+import DialogComponent from "@/components/ui/DialogComponent.vue";
 
 Vue.use(VueRouter);
 
@@ -18,9 +19,14 @@ const routes = [
     component: ListView,
   },
   {
-    path: "/card",
+    path: "/list/:id",
     name: "card",
     component: CardView,
+  },
+  {
+    path: "/test",
+    name: "",
+    component: DialogComponent,
   },
 ];
 

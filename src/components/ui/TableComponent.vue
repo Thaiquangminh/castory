@@ -10,7 +10,11 @@
         </tr>
       </thead>
       <tbody class="table-wrapper-content">
-        <tr v-for="item in value" :key="item.name">
+        <tr
+          v-for="item in value"
+          :key="item.name"
+          @click="handleNavigateCard(item.id)"
+        >
           <td class="table-name">{{ item.name }}</td>
           <td class="text-center table-new-card">{{ item.newCard }}</td>
           <td class="text-center table-remind-card">{{ item.remindCard }}</td>
@@ -31,6 +35,11 @@ export default {
       default: () => [],
     },
   },
+  methods: {
+    handleNavigateCard(id) {
+      this.$router.push(`/list/${id}`);
+    },
+  },
 };
 </script>
 
@@ -42,8 +51,10 @@ table
     margin-right: 1px !important
     color: #FFFFFF !important
     font-weight: 400
-  td
-    font-weight: 600
+  tr
+    cursor: pointer
+    td
+      font-weight: 600
 
 .table-header-border-left
   border-top-left-radius: 12px
