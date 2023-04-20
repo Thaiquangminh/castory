@@ -34,6 +34,7 @@ button
   color: #FFFFFF !important
   border-radius: 12px !important
   text-transform: initial
+  height: 48px !important
 .blue-btn
   background-color: #453FE3 !important
 .gray-btn

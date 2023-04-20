@@ -1,5 +1,5 @@
 <template>
-  <LayoutCard title="Tuần 1 thi đại học" subtitle="Bộ thẻ:" type="CÂU HỎI">
+  <LayoutCard :title="getTitle" subtitle="Bộ thẻ:" type="CÂU HỎI">
     <v-layout class="d-flex flex-column">
       <v-flex class="mb-2 justify-center d-flex">
         <h4>
@@ -31,13 +31,22 @@ import ButtonComponent from "@/components/ui/ButtonComponent.vue";
 
 export default {
   components: { ButtonComponent, InputComponent, LayoutCard },
+  created() {
+    this.cardId = this.$route.params.id;
+  },
   data() {
     return {
       answerInput: {
         placeholder: "Nhập câu trả lời của bạn",
         id: "answer",
       },
+      cardId: "",
     };
+  },
+  computed: {
+    getTitle() {
+      return `Tuần ${this.cardId} thi đại học`;
+    },
   },
 };
 </script>
