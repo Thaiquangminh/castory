@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid class="login-wrapper">
+  <v-container fluid class="login-wrapper" pa-0>
+    <nav-bar-component />
     <v-row
       :class="[
         'login-row',
@@ -160,4 +161,5 @@ form
 </style>
 <script setup>
 import InputComponent from "@/components/ui/InputComponent.vue";
+import NavBarComponent from "@/components/ui/NavBarComponent.vue";
 </script>
