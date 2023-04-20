@@ -4,6 +4,7 @@
       :type="inputProps.typeInput"
       :placeholder="inputProps.placeholder"
       :id="inputProps.id"
+      @input="handleUpdateValue($event.target.value)"
     />
   </div>
 </template>
@@ -14,7 +15,7 @@ export default {
     inputProps: {
       typeInput: {
         type: String,
-        default: "password",
+        default: "text",
       },
       placeholder: {
         type: String,
@@ -24,6 +25,11 @@ export default {
         type: String,
         default: "",
       },
+    },
+  },
+  methods: {
+    handleUpdateValue(value) {
+      this.$emit("input", value);
     },
   },
 };
@@ -36,5 +42,9 @@ input
   border: 1px solid #D9DFEA
   border-radius: 12px
   margin-bottom: 24px
+  margin-top: 8px
   background-color: #F9FBFC
+
+.inputIcon
+  position: absolute
 </style>
