@@ -1,11 +1,14 @@
 <template>
   <v-container fluid class="login-wrapper" pa-0>
-    <nav-bar-component />
+    <NavBarComponent />
     <v-row
       :class="[
         'login-row',
         {
           'height-sm': $vuetify.breakpoint.smAndDown,
+        },
+        {
+          'login-row-xs': $vuetify.breakpoint.xsOnly,
         },
       ]"
     >
@@ -34,7 +37,10 @@
           >
             <h3>Welcome to <span class="castory">Castory</span></h3>
           </v-card-title>
-          <v-card-subtitle class="mb-8 ml-1">
+          <v-card-subtitle
+            class="mb-8 ml-1"
+            :class="$vuetify.breakpoint.xsOnly ? 'd-flex justify-center' : ' '"
+          >
             <div>Log in to start learning</div>
           </v-card-subtitle>
           <v-card-text>
@@ -72,7 +78,11 @@
 </template>
 
 <script>
+import NavBarComponent from "@/components/ui/NavBarComponent.vue";
+import InputComponent from "@/components/ui/InputComponent.vue";
+
 export default {
+  components: { InputComponent, NavBarComponent },
   data() {
     return {
       usernameInput: {
@@ -155,6 +165,9 @@ form
     .login-flex-image
       display: flex
       justify-content: end
+  .login-row-xs
+    padding: 0 16px
+    margin-top: 87px
 
 form
   .login-group-sm
@@ -165,7 +178,3 @@ form
   .login-col-sm
     padding: 0
 </style>
-<script setup>
-import InputComponent from "@/components/ui/InputComponent.vue";
-import NavBarComponent from "@/components/ui/NavBarComponent.vue";
-</script>
