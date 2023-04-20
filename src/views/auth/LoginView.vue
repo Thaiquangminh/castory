@@ -9,8 +9,8 @@
         },
       ]"
     >
-      <v-col cols="12" md="6" sm="12" xs="12">
-        <v-flex :class="$vuetify.breakpoint.mdAndUp ? 'login-flex-image' : ''">
+      <v-col cols="6" md="4" sm="12" xs="12" v-if="$vuetify.breakpoint.mdAndUp">
+        <v-flex class="login-flex-image">
           <img class="login-image" src="@/assets/images/logo.svg" alt="" />
         </v-flex>
       </v-col>
@@ -28,7 +28,10 @@
         :style="$vuetify.breakpoint.mdAndUp ? 'max-width: 400px' : ''"
       >
         <v-card elevation="0" class="login-group-form-card">
-          <v-card-title class="mb-2">
+          <v-card-title
+            class="mb-2"
+            :class="$vuetify.breakpoint.xsOnly ? 'd-flex justify-center' : ' '"
+          >
             <h3>Welcome to <span class="castory">Castory</span></h3>
           </v-card-title>
           <v-card-subtitle class="mb-8 ml-1">
@@ -99,22 +102,25 @@ export default {
   background-color: #F3F4FD !important
 
 .login-wrapper
-  height: 100%
+  height: 100vh
   .login-row
-    height: 100%
-    display: flex
+    height: 95vh
     justify-content: center
     align-items: center
 
 .login-wrapper-form
   margin-left: 46px
-
-.login-image
+.login-flex-image
   height: 100%
   width: 100%
   max-height: 677px
   max-width: 683px
-  object-fit: contain
+  .login-image
+    height: 100%
+    width: 100%
+    max-height: 677px
+    max-width: 683px
+    object-fit: contain
 
 .castory
   color: #453FE3
