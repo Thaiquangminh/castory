@@ -1,6 +1,5 @@
 <template>
   <v-container fluid class="login-wrapper" pa-0>
-    <NavBarComponent />
     <v-row
       :class="[
         'login-row w-100',

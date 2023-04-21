@@ -1,18 +1,27 @@
 <template>
   <v-row justify="center">
-    <!-- ----------Delete dialog------------ -->
+    <!-- ----------Delete && Logout dialog------------ -->
     <v-dialog
-      v-if="typeDialog === 'delete'"
-      v-model="showDialog"
+      v-if="typeDialog === 'delete' || typeDialog === 'logout'"
+      :value="showDialogValue"
       max-width="400"
     >
       <v-card class="pa-8">
         <v-card-title class="pa-0 mb-7">
-          <h4 class="dialog-delete-title">Đăng xuất?</h4>
+          <h4
+            class="dialog-delete-title"
+            v-text="typeDialog === 'logout' ? 'Đăng xuất?' : 'Xoá thẻ?'"
+          />
         </v-card-title>
         <v-card-text class="pa-0 mb-7">
-          <span class="dialog-delete-subtitle">
-            Bạn sẽ đăng xuất khỏi tài khoản hiện tại
+          <span
+            class="dialog-delete-subtitle"
+            v-text="
+              typeDialog === 'logout'
+                ? 'Bạn sẽ đăng xuất khỏi tài khoản hiện tại'
+                : 'Thẻ sẽ bị xóa vĩnh viễn'
+            "
+          >
           </span>
         </v-card-text>
         <v-card-actions class="d-flex align-center pa-0">
@@ -21,7 +30,7 @@
             >Huỷ</v-btn
           >
           <ButtonComponent
-            title="Đăng xuất"
+            :title="typeDialog === 'logout' ? 'Đăng xuất' : 'Xoá'"
             class="ml-3"
             @click="handleLogOut"
           />
@@ -31,7 +40,7 @@
     <!-- ----------Success dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'success'"
-      v-model="showDialog"
+      :value="showDialogValue"
       max-width="400"
     >
       <v-card class="pa-8 d-flex flex-column" style="border-radius: 12px">
@@ -53,7 +62,7 @@
     <!-- ----------Review random dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'remind'"
-      v-model="showDialog"
+      :value="showDialogValue"
       max-width="600"
     >
       <v-card class="pa-8">
@@ -104,15 +113,6 @@ export default {
     typeDialog: {
       type: String,
       default: "delete",
-    },
-  },
-  mounted() {
-    this.showDialog = this.showDialogValue;
-    // console.log(this.showDialogValue);
-  },
-  watch: {
-    dialog() {
-      this.showDialog = this.$props.showDialogValue;
     },
   },
   methods: {

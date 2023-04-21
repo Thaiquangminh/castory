@@ -31,7 +31,11 @@
         />
       </v-flex>
     </v-layout>
-    <DialogComponent :showDialogValue="showDialog" typeDialog="delete" />
+    <DialogComponent
+      :showDialogValue="showDialog"
+      typeDialog="delete"
+      @closeDialog="handleCloseDialog"
+    />
   </LayoutCard>
 </template>
 
@@ -65,6 +69,9 @@ export default {
   methods: {
     handleShowDialog() {
       this.showDialog = true;
+    },
+    handleCloseDialog() {
+      this.showDialog = false;
     },
     handleDeleteCard() {
       this.handleShowDialog();
