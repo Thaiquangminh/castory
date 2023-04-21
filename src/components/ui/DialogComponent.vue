@@ -1,5 +1,6 @@
 <template>
   <v-row justify="center">
+    <!-- ----------Delete dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'delete'"
       v-model="showDialogTest"
@@ -27,6 +28,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- ----------Success dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'success'"
       v-model="showDialogTest"
@@ -48,17 +50,50 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- ----------Review random dialog------------ -->
+    <v-dialog
+      v-if="typeDialog === 'remind'"
+      v-model="showDialogTest"
+      max-width="600"
+    >
+      <v-card class="pa-8">
+        <v-card-title class="pa-0 mb-7">
+          <h4 class="dialog-delete-title">Ôn thêm ngẫu nhiên</h4>
+        </v-card-title>
+        <v-card-text class="pa-0 mb-6 d-flex flex-column">
+          <span class="dialog-delete-subtitle mb-1">
+            Bạn muốn ôn ngẫu nhiên bao nhiêu thẻ?
+          </span>
+          <span class="dialog-helper-text">
+            Nhập số thẻ từ 1 - [tổng số thẻ]
+          </span>
+        </v-card-text>
+        <v-card-actions class="d-flex align-center pa-0">
+          <InputComponent :inputProps="inputProps" class="ma-0" />
+          <ButtonComponent
+            title="Bắt đầu ôn"
+            icon="fa-arrow-right"
+            class="ml-3"
+            @click="handleReview"
+          />
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-row>
 </template>
 
 <script>
 import ButtonComponent from "@/components/ui/ButtonComponent.vue";
+import InputComponent from "@/components/ui/InputComponent.vue";
 
 export default {
-  components: { ButtonComponent },
+  components: { InputComponent, ButtonComponent },
   data() {
     return {
       showDialogTest: false,
+      inputProps: {
+        placeholder: "Nhập số thẻ",
+      },
     };
   },
   props: {
@@ -81,6 +116,9 @@ export default {
     handleTurnOffDialog() {
       this.$emit("turnOffDialog");
     },
+    handleReview() {
+      this.$emit("review");
+    },
   },
 };
 </script>
@@ -99,9 +137,8 @@ export default {
   color: #453FE3
 
 // ------- dialog success ------- //
-.v-sheet
-  .v-card
-    border-radius: 12px!important
+.v-card
+  border-radius: 12px !important
 .dialog-success-title
   font-size: 22px
   color: #384961
