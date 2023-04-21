@@ -24,7 +24,7 @@
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
                     <v-menu
-                      offset-x
+                      offset-y
                       transition="slide-y-transition"
                       location="end"
                     >
@@ -127,8 +127,8 @@ export default {
   min-height: 168px
 .v-menu__content
   border-radius: 12px
-  left: 66vw !important
-  top: 26vh !important
+  //left: 62vw !important
+  //top: 25vh !important
 .v-list-item__title
   font-style: normal
   font-weight: 600
