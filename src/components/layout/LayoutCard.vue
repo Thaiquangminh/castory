@@ -23,6 +23,8 @@
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
+
+                    <!-- --------menu list----------- -->
                     <v-menu offset-x transition="scale-transition">
                       <template v-slot:activator="{ attrs, on }">
                         <img
@@ -40,13 +42,14 @@
                           :key="index"
                           link
                         >
-                          <img :src="getImage()" alt="" />
+                          <img :src="getIcon(item.icon)" alt="" />
                           <v-list-item-title>
-                            <p>{{ item.title }}</p>
+                            <p class="mb-0">{{ item.title }}</p>
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
                     </v-menu>
+                    <!-- -------------End menu list-------------- -->
                   </v-col>
                 </v-row>
                 <slot></slot>
@@ -65,17 +68,17 @@ export default {
     items: [
       {
         color: "#1BB763",
-        icon: "@/assets/icons/save.svg",
+        icon: "save",
         title: "Lưu thẻ",
       },
       {
         color: "#1BB763",
-        icon: "@/assets/icons/trash.svg",
+        icon: "trash",
         title: "Xóa thẻ",
       },
       {
         color: "#1BB763",
-        icon: "@/assets/icons/back.svg",
+        icon: "back",
         title: "Quay lại",
       },
     ],
@@ -92,8 +95,8 @@ export default {
     handleBackPage() {
       this.$emit("back");
     },
-    getImage() {
-      return "@/assets/icons/trash.svg";
+    getIcon(name) {
+      return require("@/assets/icons/" + name + ".svg");
     },
   },
 };

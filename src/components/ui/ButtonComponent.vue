@@ -40,6 +40,7 @@ button
   border-radius: 12px !important
   text-transform: initial
   height: 48px !important
+  min-width: 82px !important
 .blue-btn
   background-color: #453FE3 !important
 .gray-btn

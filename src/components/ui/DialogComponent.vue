@@ -1,12 +1,16 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="showDialogTest" max-width="400">
+    <v-dialog
+      v-if="typeDialog === 'delete'"
+      v-model="showDialogTest"
+      max-width="400"
+    >
       <v-card class="pa-8">
         <v-card-title class="pa-0 mb-7">
-          <h4 class="dialog-title">Đăng xuất?</h4>
+          <h4 class="dialog-delete-title">Đăng xuất?</h4>
         </v-card-title>
         <v-card-text class="pa-0 mb-7">
-          <span class="dialog-subtitle">
+          <span class="dialog-delete-subtitle">
             Bạn sẽ đăng xuất khỏi tài khoản hiện tại
           </span>
         </v-card-text>
@@ -23,6 +27,27 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog
+      v-if="typeDialog === 'success'"
+      v-model="showDialogTest"
+      max-width="400"
+    >
+      <v-card class="pa-8 d-flex flex-column">
+        <v-flex class="mb-6 d-flex justify-center">
+          <img src="@/assets/images/success.svg" alt="" />
+        </v-flex>
+        <v-card-title class="pa-0 mb-7 text-center">
+          <h5 class="dialog-success-title">
+            Chúc mừng bạn
+            <br />
+            đã hoàn thành bộ thẻ
+          </h5>
+        </v-card-title>
+        <v-card-actions class="d-flex justify-center pa-0">
+          <ButtonComponent title="OK" @click="handleTurnOffDialog" />
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-row>
 </template>
 
@@ -33,13 +58,17 @@ export default {
   components: { ButtonComponent },
   data() {
     return {
-      showDialogTest: false,
+      showDialogTest: true,
     };
   },
   props: {
     showDialog: {
       type: Boolean,
       default: false,
+    },
+    typeDialog: {
+      type: String,
+      default: "success",
     },
   },
   methods: {
@@ -49,19 +78,33 @@ export default {
     handleLogOut() {
       this.$emit("logOut");
     },
+    handleTurnOffDialog() {
+      this.$emit("turnOffDialog");
+    },
   },
 };
 </script>
 
 <style lang="sass" scoped>
-.dialog-title
+// ----- dialog delete --------- //
+.dialog-delete-title
   font-size: 22px
   color: #1C283D
-.dialog-subtitle
+.dialog-delete-subtitle
   font-size: 16px
   color: #384961
 .cancel-btn
   background-color: transparent !important
   text-transform: initial
   color: #453FE3
+
+// ------- dialog success ------- //
+.dialog-success-title
+  font-size: 22px
+  color: #384961
+  word-break: normal
+  line-height: 33px
+.v-responsive__content
+  justify-content: center
+  display: flex
 </style>

@@ -15,7 +15,7 @@
       </v-flex>
       <v-flex>
         <label for="answer" class="card-answer">Câu trả lời:</label>
-        <InputComponent :inputProps="answerInput" />
+        <InputComponent :inputProps="answerInput" v-model="answerValue" />
       </v-flex>
       <v-flex class="d-flex align-center justify-space-between">
         <div class="d-flex">
@@ -24,7 +24,11 @@
             Số thẻ cần ôn:<span class="ml-2 text-2">42</span>
           </div>
         </div>
-        <ButtonComponent title="Đáp án" icon="fa-arrow-right" />
+        <ButtonComponent
+          title="Đáp án"
+          icon="fa-arrow-right"
+          @click="handleAnswer"
+        />
       </v-flex>
     </v-layout>
     <DialogComponent :showDialog="showDialog" />
@@ -49,6 +53,7 @@ export default {
         placeholder: "Nhập câu trả lời của bạn",
         id: "answer",
       },
+      answerValue: "",
       cardId: "",
       showDialog: false,
     };
@@ -68,6 +73,9 @@ export default {
     },
     handleBackPage() {
       this.$router.push("/list");
+    },
+    handleAnswer() {
+      console.log(this.answerValue);
     },
   },
 };
