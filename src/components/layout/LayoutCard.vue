@@ -23,9 +23,11 @@
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
-
-                    <!-- --------menu list----------- -->
-                    <v-menu offset-x transition="scale-transition">
+                    <v-menu
+                      offset-x
+                      transition="slide-y-transition"
+                      location="end"
+                    >
                       <template v-slot:activator="{ attrs, on }">
                         <img
                           src="@/assets/icons/menu.svg"
@@ -33,23 +35,25 @@
                           style="cursor: pointer"
                           v-bind="attrs"
                           v-on="on"
+                          alt=""
                         />
                       </template>
 
                       <v-list class="pa-0 layout-list">
                         <v-list-item
+                          class="px-5 py-1"
                           v-for="(item, index) in items"
                           :key="index"
+                          c
                           link
                         >
-                          <img :src="getIcon(item.icon)" alt="" />
+                          <img :src="getImage()" alt="" />
                           <v-list-item-title>
-                            <p class="mb-0">{{ item.title }}</p>
+                            <p>{{ item.title }}</p>
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
                     </v-menu>
-                    <!-- -------------End menu list-------------- -->
                   </v-col>
                 </v-row>
                 <slot></slot>
@@ -68,16 +72,16 @@ export default {
     items: [
       {
         color: "#1BB763",
-        icon: "save",
+        icon: "@/assets/icons/save.svg",
         title: "Lưu thẻ",
       },
       {
         color: "#1BB763",
-        icon: "trash",
+        icon: "@/assets/icons/trash.svg",
         title: "Xóa thẻ",
       },
       {
-        color: "#1BB763",
+        color: "color: #3887FE",
         icon: "back",
         title: "Quay lại",
       },
@@ -117,4 +121,14 @@ export default {
 
 .layout-list
   min-width: 185px
+  min-height: 168px
+.v-menu__content
+  border-radius: 12px
+  left: 66vw !important
+  top: 26vh !important
+.v-list-item__title
+  font-style: normal
+  font-weight: 600
+  font-size: 16px
+  line-height: 150%
 </style>
