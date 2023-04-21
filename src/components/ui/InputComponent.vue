@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <input
-      :type="inputProps.typeInput"
-      :placeholder="inputProps.placeholder"
-      :id="inputProps.id"
-      @input="handleUpdateValue($event.target.value)"
-    />
-  </div>
+  <input
+    :type="inputProps.typeInput"
+    :placeholder="inputProps.placeholder"
+    :id="inputProps.id"
+    @input="handleUpdateValue($event.target.value)"
+  />
 </template>
 
 <script>
@@ -44,6 +42,7 @@ input
   margin-bottom: 24px
   margin-top: 8px
   background-color: #F9FBFC
+  min-width: 305px
 
 .inputIcon
   position: absolute
