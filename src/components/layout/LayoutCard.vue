@@ -23,7 +23,11 @@
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
-                    <v-menu offset-x transition="scale-transition">
+                    <v-menu
+                      offset-x
+                      transition="slide-y-transition"
+                      location="end"
+                    >
                       <template v-slot:activator="{ attrs, on }">
                         <img
                           src="@/assets/icons/menu.svg"
@@ -31,18 +35,24 @@
                           style="cursor: pointer"
                           v-bind="attrs"
                           v-on="on"
+                          alt=""
                         />
                       </template>
 
                       <v-list class="pa-0 layout-list">
                         <v-list-item
+                          class="px-5 py-1"
                           v-for="(item, index) in items"
                           :key="index"
+                          c
                           link
                         >
-                          <img :src="getImage()" alt="" />
-                          <v-list-item-title>
-                            <p>{{ item.title }}</p>
+                          <v-img :src="getIcon(item.icon)" alt="" />
+                          <v-list-item-title
+                            class="ml-4 d-flex"
+                            :style="item.color"
+                          >
+                            {{ item.title }}
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -64,18 +74,18 @@ export default {
   data: () => ({
     items: [
       {
-        color: "#1BB763",
-        icon: "@/assets/icons/save.svg",
+        color: "color: #1BB763",
+        icon: "save",
         title: "Lưu thẻ",
       },
       {
-        color: "#1BB763",
-        icon: "@/assets/icons/trash.svg",
+        color: "color: #FD443A",
+        icon: "trash",
         title: "Xóa thẻ",
       },
       {
-        color: "#1BB763",
-        icon: "@/assets/icons/back.svg",
+        color: "color: #3887FE",
+        icon: "back",
         title: "Quay lại",
       },
     ],
@@ -92,8 +102,8 @@ export default {
     handleBackPage() {
       this.$emit("back");
     },
-    getImage() {
-      return "@/assets/icons/trash.svg";
+    getIcon(name) {
+      return require("@/assets/icons/" + name + ".svg");
     },
   },
 };
@@ -114,4 +124,14 @@ export default {
 
 .layout-list
   min-width: 185px
+  min-height: 168px
+.v-menu__content
+  border-radius: 12px
+  left: 66vw !important
+  top: 26vh !important
+.v-list-item__title
+  font-style: normal
+  font-weight: 600
+  font-size: 16px
+  line-height: 150%
 </style>
