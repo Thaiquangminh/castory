@@ -10,11 +10,7 @@
         </tr>
       </thead>
       <tbody class="table-wrapper-content">
-        <tr
-          v-for="item in value"
-          :key="item.name"
-          @click="handleNavigateCard(item.id)"
-        >
+        <tr v-for="item in value" :key="item.name" @click="navigate(item.id)">
           <td class="table-name">{{ item.name }}</td>
           <td class="text-center table-new-card">{{ item.newCard }}</td>
           <td class="text-center table-remind-card">{{ item.remindCard }}</td>
@@ -36,8 +32,8 @@ export default {
     },
   },
   methods: {
-    handleNavigateCard(id) {
-      this.$router.push(`/list/${id}`);
+    navigate(id) {
+      this.$emit("navigate", id);
     },
   },
 };

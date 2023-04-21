@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" max-width="400">
+    <v-dialog v-model="showDialogTest" max-width="400">
       <v-card class="pa-8">
         <v-card-title class="pa-0 mb-7">
           <h4 class="dialog-title">Đăng xuất?</h4>
@@ -33,15 +33,21 @@ export default {
   components: { ButtonComponent },
   data() {
     return {
-      dialog: true,
+      showDialogTest: false,
     };
+  },
+  props: {
+    showDialog: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     handleCloseDialog() {
-      this.dialog = false;
+      this.$emit("closeDialog");
     },
     handleLogOut() {
-      console.log("Log out done!!!");
+      this.$emit("logOut");
     },
   },
 };
