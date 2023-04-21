@@ -23,11 +23,30 @@
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
-                    <img
-                      src="@/assets/icons/menu.svg"
-                      @click="handleMoreOption"
-                      style="cursor: pointer"
-                    />
+                    <v-menu offset-x transition="scale-transition">
+                      <template v-slot:activator="{ attrs, on }">
+                        <img
+                          src="@/assets/icons/menu.svg"
+                          @click="handleMoreOption"
+                          style="cursor: pointer"
+                          v-bind="attrs"
+                          v-on="on"
+                        />
+                      </template>
+
+                      <v-list class="pa-0 layout-list">
+                        <v-list-item
+                          v-for="(item, index) in items"
+                          :key="index"
+                          link
+                        >
+                          <img :src="getImage()" alt="" />
+                          <v-list-item-title>
+                            <p>{{ item.title }}</p>
+                          </v-list-item-title>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu>
                   </v-col>
                 </v-row>
                 <slot></slot>
@@ -42,6 +61,25 @@
 
 <script>
 export default {
+  data: () => ({
+    items: [
+      {
+        color: "#1BB763",
+        icon: "@/assets/icons/save.svg",
+        title: "Lưu thẻ",
+      },
+      {
+        color: "#1BB763",
+        icon: "@/assets/icons/trash.svg",
+        title: "Xóa thẻ",
+      },
+      {
+        color: "#1BB763",
+        icon: "@/assets/icons/back.svg",
+        title: "Quay lại",
+      },
+    ],
+  }),
   props: {
     subtitle: String,
     title: String,
@@ -53,6 +91,9 @@ export default {
     },
     handleBackPage() {
       this.$emit("back");
+    },
+    getImage() {
+      return "@/assets/icons/trash.svg";
     },
   },
 };
@@ -70,4 +111,7 @@ export default {
   padding: 4px
   background-color: #E9EDF5
   border-radius: 6px
+
+.layout-list
+  min-width: 185px
 </style>
