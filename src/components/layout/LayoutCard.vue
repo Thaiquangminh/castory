@@ -2,6 +2,7 @@
   <v-container fluid>
     <v-row class="d-flex justify-center align-center mt-8">
       <v-col cols="12" md="8">
+        <!--  ----------Header---------- -->
         <v-card elevation="0">
           <v-flex class="d-flex align-center mb-2">
             <img
@@ -17,12 +18,14 @@
           <v-card-title class="pa-0">
             <h4>{{ title }}</h4>
           </v-card-title>
+          <!-- ----------Start header of content---------- -->
           <v-row class="d-flex justify-center">
             <v-col cols="12" md="10">
               <v-card class="layout-card-wrapper" elevation="0">
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
+                    <!-- ----------Menu item---------- -->
                     <v-menu
                       offset-y
                       transition="slide-y-transition"

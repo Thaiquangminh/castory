@@ -110,6 +110,11 @@ export default {
     this.showDialog = this.showDialogValue;
     // console.log(this.showDialogValue);
   },
+  watch: {
+    dialog() {
+      this.showDialog = this.$props.showDialogValue;
+    },
+  },
   methods: {
     handleCloseDialog() {
       this.$emit("closeDialog");
@@ -132,9 +137,11 @@ export default {
 .dialog-delete-title
   font-size: 22px
   color: #1C283D
+
 .dialog-delete-subtitle
   font-size: 16px
   color: #384961
+
 .cancel-btn
   background-color: transparent !important
   text-transform: initial
@@ -143,12 +150,14 @@ export default {
 // ------- dialog success ------- //
 .v-card
   border-radius: 12px !important
+
 .dialog-success-title
   font-size: 22px
   color: #384961
   word-break: normal
   line-height: 33px
   width: 100%
+
 .v-responsive__content
   justify-content: center
   display: flex

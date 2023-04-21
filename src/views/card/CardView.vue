@@ -31,7 +31,7 @@
         />
       </v-flex>
     </v-layout>
-    <DialogComponent :showDialogValue="showDialog" typeDialog="success" />
+    <DialogComponent :showDialogValue="showDialog" typeDialog="delete" />
   </LayoutCard>
 </template>
 

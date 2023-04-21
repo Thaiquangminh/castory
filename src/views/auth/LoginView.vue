@@ -37,6 +37,7 @@
         :style="$vuetify.breakpoint.mdAndUp ? 'max-width: 400px' : ''"
       >
         <v-card elevation="0" class="login-group-form-card">
+          <!--  --------------------Header-------------------- -->
           <v-card-title
             class="mb-2"
             :class="$vuetify.breakpoint.xsOnly ? 'd-flex justify-center' : ' '"
@@ -49,6 +50,7 @@
           >
             <div>Log in to start learning</div>
           </v-card-subtitle>
+          <!--  --------------------Start form-------------------- -->
           <v-card-text>
             <form @submit.prevent="handleSubmitForm">
               <v-row
