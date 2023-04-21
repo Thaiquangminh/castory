@@ -22,7 +22,7 @@ export default {
   img
     height: 60px
     width: 103px
-    margin-left: 19vw
+    margin-left: 24vw
 .nav-login
   max-height: 60px
 </style>

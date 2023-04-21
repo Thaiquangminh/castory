@@ -3,7 +3,7 @@
     <NavBarComponent />
     <v-row
       :class="[
-        'login-row',
+        'login-row pt-14 w-100',
         {
           'height-sm': $vuetify.breakpoint.smAndDown,
         },
@@ -12,7 +12,13 @@
         },
       ]"
     >
-      <v-col cols="6" md="4" sm="12" xs="12" v-if="$vuetify.breakpoint.mdAndUp">
+      <v-col
+        cols="12"
+        md="4"
+        sm="12"
+        xs="12"
+        v-if="$vuetify.breakpoint.mdAndUp"
+      >
         <v-flex class="login-flex-image">
           <img class="login-image" src="@/assets/images/logo.svg" alt="" />
         </v-flex>
@@ -115,10 +121,11 @@ export default {
   height: 100vh
   .login-row
     height: 95vh
+    display: flex
     justify-content: center
-    align-items: center
 
 .login-wrapper-form
+  padding-top: 18vh
   margin-left: 46px
 .login-flex-image
   height: 100%
