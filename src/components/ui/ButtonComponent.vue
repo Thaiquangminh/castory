@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-btn v-if="!isGrayBtn" class="blue-btn"
+    <v-btn v-if="!isGrayBtn" class="blue-btn" @click="handleClickBtn"
       >{{ title }}
       <v-icon v-if="icon" class="ml-3" small>{{ icon }}</v-icon>
     </v-btn>
-    <v-btn v-if="isGrayBtn" class="gray-btn"
+    <v-btn v-if="isGrayBtn" class="gray-btn" @click="handleClickBtn"
       >{{ title }}
       <v-icon v-if="icon" class="ml-3" small>{{ icon }}</v-icon>
     </v-btn>
@@ -24,6 +24,11 @@ export default {
     isGrayBtn: {
       default: false,
       type: Boolean,
+    },
+  },
+  methods: {
+    handleClickBtn() {
+      this.$emit("click");
     },
   },
 };

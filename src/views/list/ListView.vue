@@ -1,6 +1,6 @@
 <template>
   <LayoutList title="Danh sách bộ thẻ từ vựng">
-    <TableComponent :value="cardList" />
+    <TableComponent :value="cardList" @navigate="handleNavigateToCard" />
   </LayoutList>
 </template>
 
@@ -105,6 +105,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleNavigateToCard(id) {
+      this.$router.push(`/list/${id}`);
+    },
   },
 };
 </script>
