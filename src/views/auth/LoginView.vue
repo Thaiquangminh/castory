@@ -3,7 +3,7 @@
     <NavBarComponent />
     <v-row
       :class="[
-        'login-row pt-14 w-100',
+        'login-row w-100',
         {
           'height-sm': $vuetify.breakpoint.smAndDown,
         },
@@ -121,12 +121,13 @@ export default {
   height: 100vh
   .login-row
     height: 95vh
+    width: 95vw
     display: flex
     justify-content: center
 
 .login-wrapper-form
   padding-top: 18vh
-  margin-left: 46px
+  margin-left: 44px
 .login-flex-image
   height: 100%
   width: 100%
