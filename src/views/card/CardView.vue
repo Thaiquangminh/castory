@@ -1,5 +1,11 @@
 <template>
-  <LayoutCard :title="getTitle" subtitle="Bộ thẻ:" type="CÂU HỎI">
+  <LayoutCard
+    :title="getTitle"
+    subtitle="Bộ thẻ:"
+    type="CÂU HỎI"
+    @options="handleShowOption"
+    @back="handleBackPage"
+  >
     <v-layout class="d-flex flex-column">
       <v-flex class="mb-2 justify-center d-flex">
         <h4>
@@ -21,6 +27,7 @@
         <ButtonComponent title="Đáp án" icon="fa-arrow-right" />
       </v-flex>
     </v-layout>
+    <DialogComponent :showDialog="showDialog" />
   </LayoutCard>
 </template>
 
@@ -28,11 +35,13 @@
 import LayoutCard from "@/components/layout/LayoutCard.vue";
 import InputComponent from "@/components/ui/InputComponent.vue";
 import ButtonComponent from "@/components/ui/ButtonComponent.vue";
+import DialogComponent from "@/components/ui/DialogComponent.vue";
 
 export default {
-  components: { ButtonComponent, InputComponent, LayoutCard },
+  components: { DialogComponent, ButtonComponent, InputComponent, LayoutCard },
   created() {
     this.cardId = this.$route.params.id;
+    console.log(this.showDialog);
   },
   data() {
     return {
@@ -41,11 +50,24 @@ export default {
         id: "answer",
       },
       cardId: "",
+      showDialog: false,
     };
   },
   computed: {
     getTitle() {
       return `Tuần ${this.cardId} thi đại học`;
+    },
+  },
+  methods: {
+    handleShowDialog() {
+      this.showDialog = true;
+      console.log(this.showDialog);
+    },
+    handleShowOption() {
+      this.handleShowDialog();
+    },
+    handleBackPage() {
+      this.$router.push("/list");
     },
   },
 };
