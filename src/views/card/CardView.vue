@@ -3,7 +3,7 @@
     :title="getTitle"
     subtitle="Bộ thẻ:"
     type="CÂU HỎI"
-    @options="handleShowOption"
+    @delete="handleDeleteCard"
     @back="handleBackPage"
   >
     <v-layout class="d-flex flex-column">
@@ -31,7 +31,7 @@
         />
       </v-flex>
     </v-layout>
-    <DialogComponent :showDialog="showDialog" />
+    <DialogComponent :showDialogValue="showDialog" typeDialog="success" />
   </LayoutCard>
 </template>
 
@@ -45,7 +45,6 @@ export default {
   components: { DialogComponent, ButtonComponent, InputComponent, LayoutCard },
   created() {
     this.cardId = this.$route.params.id;
-    console.log(this.showDialog);
   },
   data() {
     return {
@@ -66,9 +65,8 @@ export default {
   methods: {
     handleShowDialog() {
       this.showDialog = true;
-      console.log(this.showDialog);
     },
-    handleShowOption() {
+    handleDeleteCard() {
       this.handleShowDialog();
     },
     handleBackPage() {

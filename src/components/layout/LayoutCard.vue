@@ -31,7 +31,6 @@
                       <template v-slot:activator="{ attrs, on }">
                         <img
                           src="@/assets/icons/menu.svg"
-                          @click="handleMoreOption"
                           style="cursor: pointer"
                           v-bind="attrs"
                           v-on="on"
@@ -44,8 +43,8 @@
                           class="px-5 py-1"
                           v-for="(item, index) in items"
                           :key="index"
-                          c
                           link
+                          @click="handleDelete"
                         >
                           <v-img :src="getIcon(item.icon)" alt="" />
                           <v-list-item-title
@@ -96,14 +95,14 @@ export default {
     type: String,
   },
   methods: {
-    handleMoreOption() {
-      this.$emit("options");
-    },
     handleBackPage() {
       this.$emit("back");
     },
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
+    },
+    handleDelete() {
+      this.$emit("delete");
     },
   },
 };

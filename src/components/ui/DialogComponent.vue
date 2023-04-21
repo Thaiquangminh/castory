@@ -3,7 +3,7 @@
     <!-- ----------Delete dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'delete'"
-      v-model="showDialogTest"
+      v-model="showDialog"
       max-width="400"
     >
       <v-card class="pa-8">
@@ -31,7 +31,7 @@
     <!-- ----------Success dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'success'"
-      v-model="showDialogTest"
+      v-model="showDialog"
       max-width="400"
     >
       <v-card class="pa-8 d-flex flex-column" style="border-radius: 12px">
@@ -53,7 +53,7 @@
     <!-- ----------Review random dialog------------ -->
     <v-dialog
       v-if="typeDialog === 'remind'"
-      v-model="showDialogTest"
+      v-model="showDialog"
       max-width="600"
     >
       <v-card class="pa-8">
@@ -90,21 +90,25 @@ export default {
   components: { InputComponent, ButtonComponent },
   data() {
     return {
-      showDialogTest: false,
+      showDialog: false,
       inputProps: {
         placeholder: "Nhập số thẻ",
       },
     };
   },
   props: {
-    showDialog: {
+    showDialogValue: {
       type: Boolean,
       default: false,
     },
     typeDialog: {
       type: String,
-      default: "success",
+      default: "delete",
     },
+  },
+  mounted() {
+    this.showDialog = this.showDialogValue;
+    // console.log(this.showDialogValue);
   },
   methods: {
     handleCloseDialog() {
