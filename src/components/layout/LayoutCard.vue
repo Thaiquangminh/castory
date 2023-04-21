@@ -47,9 +47,12 @@
                           c
                           link
                         >
-                          <img :src="getImage()" alt="" />
-                          <v-list-item-title>
-                            <p>{{ item.title }}</p>
+                          <v-img :src="getIcon(item.icon)" alt="" />
+                          <v-list-item-title
+                            class="ml-4 d-flex"
+                            :style="item.color"
+                          >
+                            {{ item.title }}
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -71,13 +74,13 @@ export default {
   data: () => ({
     items: [
       {
-        color: "#1BB763",
-        icon: "@/assets/icons/save.svg",
+        color: "color: #1BB763",
+        icon: "save",
         title: "Lưu thẻ",
       },
       {
-        color: "#1BB763",
-        icon: "@/assets/icons/trash.svg",
+        color: "color: #FD443A",
+        icon: "trash",
         title: "Xóa thẻ",
       },
       {
