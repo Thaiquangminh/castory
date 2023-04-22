@@ -79,16 +79,19 @@ export default {
         color: "color: #1BB763",
         icon: "save",
         title: "Lưu thẻ",
+        emitFunction: "handleSave",
       },
       {
         color: "color: #FD443A",
         icon: "trash",
         title: "Xóa thẻ",
+        emitFunction: "handleDelete",
       },
       {
         color: "color: #3887FE",
         icon: "back",
         title: "Quay lại",
+        emitFunction: "handleBack",
       },
     ],
   }),
@@ -98,12 +101,13 @@ export default {
     type: String,
   },
   methods: {
-    handleBackPage() {
-      this.$emit("back");
-    },
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
     },
+    handleBackPage() {
+      this.$emit("back");
+    },
+
     handleDelete() {
       this.$emit("delete");
     },
