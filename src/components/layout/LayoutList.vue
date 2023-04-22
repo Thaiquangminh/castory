@@ -20,7 +20,10 @@ import ButtonComponent from "@/components/ui/ButtonComponent.vue";
 export default {
   components: { ButtonComponent },
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: "",
+    },
   },
 };
 </script>

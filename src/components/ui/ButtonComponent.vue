@@ -1,12 +1,14 @@
 <template>
   <div>
-    <v-btn v-if="!isGrayBtn" class="blue-btn" @click="handleClickBtn"
-      >{{ title }}
-      <v-icon v-if="icon" class="ml-3" small>{{ icon }}</v-icon>
+    <v-btn v-if="!isGrayBtn" class="blue-btn" @click="handleClickBtn">
+      <v-icon v-if="prependIcon" class="mr-2" small>{{ prependIcon }}</v-icon>
+      {{ title }}
+      <v-icon v-if="appendIcon" class="ml-3" small>{{ appendIcon }}</v-icon>
     </v-btn>
-    <v-btn v-if="isGrayBtn" class="gray-btn" @click="handleClickBtn"
-      >{{ title }}
-      <v-icon v-if="icon" class="ml-3" small>{{ icon }}</v-icon>
+    <v-btn v-if="isGrayBtn" class="gray-btn" @click="handleClickBtn">
+      <v-icon v-if="prependIcon" class="mr-2" small>{{ prependIcon }}</v-icon>
+      {{ title }}
+      <v-icon v-if="appendIcon" class="ml-3" small>{{ appendIcon }}</v-icon>
     </v-btn>
   </div>
 </template>
@@ -14,16 +16,20 @@
 export default {
   props: {
     title: {
-      default: "",
       type: String,
+      default: "",
     },
-    icon: {
-      default: "",
+    prependIcon: {
       type: String,
+      default: "",
+    },
+    appendIcon: {
+      type: String,
+      default: "",
     },
     isGrayBtn: {
-      default: false,
       type: Boolean,
+      default: false,
     },
   },
   methods: {

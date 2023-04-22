@@ -26,7 +26,7 @@
         </div>
         <ButtonComponent
           title="Đáp án"
-          icon="fa-arrow-right"
+          append-icon="fa-arrow-right"
           @click="handleAnswer"
         />
       </v-flex>
@@ -46,7 +46,12 @@ import ButtonComponent from "@/components/ui/ButtonComponent.vue";
 import DialogComponent from "@/components/ui/DialogComponent.vue";
 
 export default {
-  components: { DialogComponent, ButtonComponent, InputComponent, LayoutCard },
+  components: {
+    DialogComponent,
+    ButtonComponent,
+    InputComponent,
+    LayoutCard,
+  },
   created() {
     this.cardId = this.$route.params.id;
   },

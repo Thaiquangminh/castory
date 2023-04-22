@@ -44,14 +44,16 @@
             <h3>Welcome to <span class="castory">Castory</span></h3>
           </v-card-title>
           <v-card-subtitle
-            class="ml-1 pb-0"
+            class="ml-1 pb-0 d-flex flex-column"
             :class="{
               'd-flex justify-center': $vuetify.breakpoint.xsOnly,
               'mb-15': isValidForm,
             }"
           >
-            <div class="">Log in to start learning</div>
-            <div v-if="!isValidForm" class="mt-4 login-invalid-helper-text">
+            <div :class="$vuetify.breakpoint.xsOnly && 'text-center'">
+              Log in to start learning
+            </div>
+            <div v-if="!isValidForm" class="mt-3 login-invalid-helper-text">
               Your user name or password is wrong
             </div>
           </v-card-subtitle>
@@ -209,5 +211,6 @@ form
     border-color: #FD443A !important
 .login-invalid-helper-text
   color: #FD443A
-  margin-bottom: 22px
+  margin-bottom: 24px
+  padding-bottom: 2px
 </style>
