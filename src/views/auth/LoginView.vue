@@ -44,10 +44,16 @@
             <h3>Welcome to <span class="castory">Castory</span></h3>
           </v-card-title>
           <v-card-subtitle
-            class="mb-8 ml-1"
-            :class="$vuetify.breakpoint.xsOnly ? 'd-flex justify-center' : ' '"
+            class="ml-1 pb-0"
+            :class="{
+              'd-flex justify-center': $vuetify.breakpoint.xsOnly,
+              'mb-15': isValidForm,
+            }"
           >
-            <div>Log in to start learning</div>
+            <div class="">Log in to start learning</div>
+            <div v-if="!isValidForm" class="mt-4 login-invalid-helper-text">
+              Your user name or password is wrong1234
+            </div>
           </v-card-subtitle>
           <!--  --------------------Start form-------------------- -->
           <v-card-text>
@@ -56,6 +62,7 @@
                 :class="[
                   'login-group-form',
                   {
+                    'invalid-form': !isValidForm,
                     'login-group-sm': $vuetify.breakpoint.xsOnly,
                   },
                 ]"
@@ -66,7 +73,15 @@
                   v-model.trim="username"
                 />
               </v-row>
-              <v-row class="login-group-form">
+              <v-row
+                :class="[
+                  'login-group-form',
+                  {
+                    'invalid-form': !isValidForm,
+                    'login-group-sm': $vuetify.breakpoint.xsOnly,
+                  },
+                ]"
+              >
                 <label class="login-label" for="password">Password</label>
                 <InputComponent
                   :inputProps="passwordInput"
@@ -85,11 +100,10 @@
 </template>
 
 <script>
-import NavBarComponent from "@/components/ui/NavBarComponent.vue";
 import InputComponent from "@/components/ui/InputComponent.vue";
 
 export default {
-  components: { InputComponent, NavBarComponent },
+  components: { InputComponent },
   data() {
     return {
       usernameInput: {
@@ -104,10 +118,12 @@ export default {
       },
       username: "",
       password: "",
+      isValidForm: true,
     };
   },
   methods: {
     handleSubmitForm() {
+      this.isValidForm = !this.isValidForm;
       console.log(this.username, this.password);
     },
   },
@@ -186,4 +202,12 @@ form
 .login-row
   .login-col-sm
     padding: 0
+
+// ------------- Invalid Form ---------------- //
+.invalid-form
+  input
+    border-color: #FD443A !important
+.login-invalid-helper-text
+  color: #FD443A
+  margin-bottom: 22px
 </style>
