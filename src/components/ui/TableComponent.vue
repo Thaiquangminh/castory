@@ -10,12 +10,41 @@
         </tr>
       </thead>
       <tbody class="table-wrapper-content">
-        <tr v-for="item in value" :key="item.name" @click="navigate(item.id)">
+        <tr
+          v-for="item in value"
+          :key="item.name"
+          @click="handleNavigate(item.id)"
+        >
           <td class="table-name">{{ item.name }}</td>
           <td class="text-center table-new-card">{{ item.newCard }}</td>
           <td class="text-center table-remind-card">{{ item.remindCard }}</td>
           <td>
-            <img src="@/assets/icons/menu.svg" alt="" />
+            <v-menu offset-y transition="slide-y-transition" location="end">
+              <!-- -------------------Menu list-------------------- -->
+              <template v-slot:activator="{ attrs, on }">
+                <img
+                  src="@/assets/icons/menu.svg"
+                  style="cursor: pointer; padding: 15px 2px"
+                  v-bind="attrs"
+                  v-on="on"
+                  alt=""
+                />
+              </template>
+              <v-list class="pa-0 layout-list">
+                <v-list-item
+                  class="px-5 py-1"
+                  v-for="(item, index) in items"
+                  :key="index"
+                  link
+                  @click="handleClickStudy"
+                >
+                  <v-img :src="getIcon(item.icon)" alt="" />
+                  <v-list-item-title class="ml-4 d-flex">
+                    {{ item.title }}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </td>
         </tr>
       </tbody>
@@ -31,9 +60,32 @@ export default {
       default: () => [],
     },
   },
+  data() {
+    return {
+      items: [
+        {
+          color: "color: #1BB763",
+          icon: "bookmark",
+          title: "Ôn tập trước",
+        },
+        {
+          color: "color: #FD443A",
+          icon: "openbook",
+          title: "Ôn thêm ngẫu nhiên",
+        },
+      ],
+    };
+  },
   methods: {
-    navigate(id) {
+    handleNavigate(id) {
       this.$emit("navigate", id);
+    },
+    handleClickStudy() {
+      this.$emit("study");
+    },
+    handleClickMenu() {},
+    getIcon(name) {
+      return require("@/assets/icons/" + name + ".svg");
     },
   },
 };

@@ -58,7 +58,7 @@
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
-                    <!-- ----------Menu item---------- -->
+                    <!-- --------------------Menu item------------------- -->
                     <v-menu
                       offset-y
                       transition="slide-y-transition"

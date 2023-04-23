@@ -5,6 +5,7 @@
       v-if="typeDialog === 'delete' || typeDialog === 'logout'"
       :value="showDialogValue"
       max-width="400"
+      @click:outside="handleCloseDialog"
     >
       <v-card class="pa-8">
         <v-card-title class="pa-0 mb-7">
@@ -42,6 +43,7 @@
       v-if="typeDialog === 'success'"
       :value="showDialogValue"
       max-width="400"
+      @click:outside="handleCloseDialog"
     >
       <v-card class="pa-8 d-flex flex-column" style="border-radius: 12px">
         <v-flex class="mb-6 d-flex justify-center">
@@ -64,6 +66,7 @@
       v-if="typeDialog === 'remind'"
       :value="showDialogValue"
       max-width="600"
+      @click:outside="handleCloseDialog"
     >
       <v-card class="pa-8">
         <v-card-title class="pa-0 mb-7">
@@ -99,7 +102,6 @@ export default {
   components: { InputComponent, ButtonComponent },
   data() {
     return {
-      showDialog: false,
       inputProps: {
         placeholder: "Nhập số thẻ",
       },
