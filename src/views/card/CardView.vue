@@ -9,7 +9,12 @@
       @back="handleBackPage"
     >
       <v-layout class="d-flex flex-column">
-        <v-flex class="mb-2 justify-center d-flex">
+        <v-flex
+          class="mb-2 justify-center d-flex"
+          :class="{
+            'mb-4': $vuetify.breakpoint.xsOnly,
+          }"
+        >
           <h4>
             Phân biệt <span class="font-weight-bold text-2">elder</span> và
             <span class="font-weight-bold text-2">elderly</span>
@@ -20,9 +25,14 @@
           <InputComponent :inputProps="answerInput" v-model="answerValue" />
         </v-flex>
         <v-flex class="d-flex align-center justify-space-between">
-          <div class="d-flex">
+          <div
+            class="d-flex"
+            :class="{
+              'flex-column': $vuetify.breakpoint.xsOnly,
+            }"
+          >
             <div>Số thẻ mới:<span class="ml-2 text-1">140</span></div>
-            <div class="ml-8">
+            <div :class="{ 'ml-8': $vuetify.breakpoint.smAndUp }">
               Số thẻ cần ôn:<span class="ml-2 text-2">42</span>
             </div>
           </div>
