@@ -1,28 +1,60 @@
 <template>
   <v-container fluid>
-    <v-row class="d-flex justify-center align-center mt-8">
-      <v-col cols="12" md="8">
+    <v-row
+      class="d-flex justify-center align-center"
+      :class="{
+        'mt-8': $vuetify.breakpoint.smAndUp,
+      }"
+    >
+      <v-col
+        cols="12"
+        md="8"
+        :class="{
+          'py-0 px-1': $vuetify.breakpoint.xsOnly,
+        }"
+      >
         <!--  ----------Header---------- -->
         <v-card elevation="0">
-          <v-flex class="d-flex align-center mb-2">
-            <img
-              src="@/assets/icons/button-back.svg"
-              alt=""
-              @click="handleBackPage"
-              style="cursor: pointer"
-            />
-            <v-card-subtitle class="pa-0 d-flex align-center ml-2">
-              <p class="mb-0">{{ subtitle }}</p>
-            </v-card-subtitle>
+          <v-flex class="d-flex">
+            <v-flex class="d-flex align-center mb-2">
+              <img
+                src="@/assets/icons/button-back.svg"
+                alt=""
+                @click="handleBackPage"
+                style="cursor: pointer"
+              />
+              <v-card-subtitle class="pa-0 d-flex align-center ml-2">
+                <p class="mb-0">{{ subtitle }}</p>
+              </v-card-subtitle>
+            </v-flex>
+            <ButtonComponent title="Browse" isGrayBtn />
           </v-flex>
-          <v-card-title class="pa-0">
+
+          <v-card-title
+            class="pa-0 align-baseline"
+            :class="{
+              'd-flex flex-column align-start': $vuetify.breakpoint.xsOnly,
+            }"
+          >
             <h4>{{ title }}</h4>
-            <span class="ml-2 layout-card-time-left">{{ timeLeft }}</span>
+            <span
+              class="layout-card-time-left"
+              :class="{
+                'ml-2': $vuetify.breakpoint.smAndUp,
+              }"
+              >{{ timeLeft }}</span
+            >
           </v-card-title>
           <!-- ----------Start header of content---------- -->
           <v-row class="d-flex justify-center">
             <v-col cols="12" md="10">
-              <v-card class="layout-card-wrapper" elevation="0">
+              <v-card
+                class="layout-card-wrapper"
+                :class="{
+                  'pa-2 mt-4': $vuetify.breakpoint.xsOnly,
+                }"
+                elevation="0"
+              >
                 <v-row class="ma-0">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
                     <p class="layout-type">{{ type }}</p>
@@ -73,7 +105,10 @@
 </template>
 
 <script>
+import ButtonComponent from "@/components/ui/ButtonComponent.vue";
+
 export default {
+  components: { ButtonComponent },
   data: () => ({
     items: [
       {
@@ -149,4 +184,9 @@ export default {
   font-weight: 600
   font-size: 16px
   line-height: 150%
+
+// ------------------- Mobile ------------------------ //
+.layout-card-wrapper-xs
+  padding: 8px
+  margin-top: 16px
 </style>
