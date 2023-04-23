@@ -1,18 +1,34 @@
 <template>
   <LayoutList title="Danh sách bộ thẻ từ vựng">
-    <TableComponent :value="cardList" @navigate="handleNavigateToCard" />
+    <TableComponent
+      :value="cardList"
+      @navigate="handleNavigateToCard"
+      @study="handleClickStudy"
+    />
+    <DialogComponent
+      typeDialog="remind"
+      :showDialogValue="showDialog"
+      @closeDialog="handleCloseDialog"
+    />
   </LayoutList>
 </template>
 
 <script>
 import LayoutList from "@/components/layout/LayoutList.vue";
 import TableComponent from "@/components/ui/TableComponent.vue";
+import DialogComponent from "@/components/ui/DialogComponent.vue";
 
 export default {
-  components: { TableComponent, LayoutList },
+  components: { DialogComponent, TableComponent, LayoutList },
   data() {
     return {
       cardList: [
+        {
+          id: "0",
+          name: "Bộ thẻ đã lưu",
+          newCard: 0,
+          remindCard: 0,
+        },
         {
           id: "1",
           name: "Tuần thi 1 đại học",
@@ -104,11 +120,18 @@ export default {
           remindCard: 42,
         },
       ],
+      showDialog: false,
     };
   },
   methods: {
     handleNavigateToCard(id) {
       this.$router.push(`/list/${id}`);
+    },
+    handleClickStudy() {
+      this.showDialog = true;
+    },
+    handleCloseDialog() {
+      this.showDialog = false;
     },
   },
 };
