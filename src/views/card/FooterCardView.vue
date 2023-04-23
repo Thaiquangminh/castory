@@ -8,7 +8,11 @@
       />
     </v-col>
     <v-col>
-      <EvaluationButtonComponent title="Khó" prependIcon="hard" />
+      <EvaluationButtonComponent
+        title="Dễ"
+        prependIcon="normal"
+        typeButton="normalType"
+      />
     </v-col>
   </v-row>
 </template>

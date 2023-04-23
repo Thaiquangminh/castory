@@ -17,6 +17,7 @@
           </v-flex>
           <v-card-title class="pa-0">
             <h4>{{ title }}</h4>
+            <span class="ml-2 layout-card-time-left">{{ timeLeft }}</span>
           </v-card-title>
           <!-- ----------Start header of content---------- -->
           <v-row class="d-flex justify-center">
@@ -99,6 +100,7 @@ export default {
     subtitle: String,
     title: String,
     type: String,
+    timeLeft: String,
   },
   methods: {
     getIcon(name) {
@@ -123,6 +125,11 @@ export default {
   min-height: 585px
   padding: 24px
 
+.layout-card-time-left
+  color: #384961
+  font-size: 16px
+  font-weight: 400
+
 .layout-type
   padding: 4px
   background-color: #E9EDF5
@@ -131,10 +138,12 @@ export default {
 .layout-list
   min-width: 185px
   min-height: 168px
+
 .v-menu__content
   border-radius: 12px
   //left: 62vw !important
   //top: 25vh !important
+
 .v-list-item__title
   font-style: normal
   font-weight: 600

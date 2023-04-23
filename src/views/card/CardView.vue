@@ -1,42 +1,45 @@
 <template>
-  <LayoutCard
-    :title="getTitle"
-    subtitle="Bộ thẻ:"
-    type="CÂU HỎI"
-    @delete="handleDeleteCard"
-    @back="handleBackPage"
-  >
-    <v-layout class="d-flex flex-column">
-      <v-flex class="mb-2 justify-center d-flex">
-        <h4>
-          Phân biệt <span class="font-weight-bold text-2">elder</span> và
-          <span class="font-weight-bold text-2">elderly</span>
-        </h4>
-      </v-flex>
-      <v-flex>
-        <label for="answer" class="card-answer">Câu trả lời:</label>
-        <InputComponent :inputProps="answerInput" v-model="answerValue" />
-      </v-flex>
-      <v-flex class="d-flex align-center justify-space-between">
-        <div class="d-flex">
-          <div>Số thẻ mới:<span class="ml-2 text-1">140</span></div>
-          <div class="ml-8">
-            Số thẻ cần ôn:<span class="ml-2 text-2">42</span>
+  <v-container fluid>
+    <LayoutCard
+      :title="getTitle"
+      subtitle="Bộ thẻ:"
+      type="CÂU HỎI"
+      timeLeft="Còn 1 giờ 16 phút"
+      @delete="handleDeleteCard"
+      @back="handleBackPage"
+    >
+      <v-layout class="d-flex flex-column">
+        <v-flex class="mb-2 justify-center d-flex">
+          <h4>
+            Phân biệt <span class="font-weight-bold text-2">elder</span> và
+            <span class="font-weight-bold text-2">elderly</span>
+          </h4>
+        </v-flex>
+        <v-flex>
+          <label for="answer" class="card-answer">Câu trả lời:</label>
+          <InputComponent :inputProps="answerInput" v-model="answerValue" />
+        </v-flex>
+        <v-flex class="d-flex align-center justify-space-between">
+          <div class="d-flex">
+            <div>Số thẻ mới:<span class="ml-2 text-1">140</span></div>
+            <div class="ml-8">
+              Số thẻ cần ôn:<span class="ml-2 text-2">42</span>
+            </div>
           </div>
-        </div>
-        <ButtonComponent
-          title="Đáp án"
-          append-icon="fa-arrow-right"
-          @click="handleAnswer"
-        />
-      </v-flex>
-    </v-layout>
-    <DialogComponent
-      :showDialogValue="showDialog"
-      typeDialog="delete"
-      @closeDialog="handleCloseDialog"
-    />
-  </LayoutCard>
+          <ButtonComponent
+            title="Đáp án"
+            append-icon="fa-arrow-right"
+            @click="handleAnswer"
+          />
+        </v-flex>
+      </v-layout>
+      <DialogComponent
+        :showDialogValue="showDialog"
+        typeDialog="delete"
+        @closeDialog="handleCloseDialog"
+      />
+    </LayoutCard>
+  </v-container>
 </template>
 
 <script>
