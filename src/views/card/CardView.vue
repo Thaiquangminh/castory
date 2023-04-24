@@ -5,7 +5,7 @@
       subtitle="Bộ thẻ:"
       type="CÂU HỎI"
       timeLeft="Còn 1 giờ 16 phút"
-      @delete="handleDeleteCard"
+      @openDeleteDialog="handleOpenDeleteDialog"
       @back="handleBackPage"
     >
       <v-layout class="d-flex flex-column">
@@ -47,6 +47,7 @@
         :showDialogValue="showDialog"
         typeDialog="delete"
         @closeDialog="handleCloseDialog"
+        @confirmRequest="handleConfirmRequest"
       />
     </LayoutCard>
   </v-container>
@@ -57,6 +58,7 @@ import LayoutCard from "@/components/layout/LayoutCard.vue";
 import InputComponent from "@/components/ui/InputComponent.vue";
 import ButtonComponent from "@/components/ui/ButtonComponent.vue";
 import DialogComponent from "@/components/ui/DialogComponent.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -66,7 +68,8 @@ export default {
     LayoutCard,
   },
   created() {
-    this.cardId = this.$route.params.id;
+    console.log(this.$store.getters["card/getCardId"]);
+    this.cardId = this.$store.getters["card/getCardId"];
   },
   data() {
     return {
@@ -85,13 +88,15 @@ export default {
     },
   },
   methods: {
+    ...mapActions("list", ["handleRemoveProduct"]),
+    // ---------------------- Handle open and close dialogs -------------------- //
     handleShowDialog() {
       this.showDialog = true;
     },
     handleCloseDialog() {
       this.showDialog = false;
     },
-    handleDeleteCard() {
+    handleOpenDeleteDialog() {
       this.handleShowDialog();
     },
     handleBackPage() {
@@ -99,6 +104,11 @@ export default {
     },
     handleAnswer() {
       console.log(this.answerValue);
+    },
+    //   ----------Delete card from list cards action-------- //
+    handleConfirmRequest() {
+      this.handleRemoveProduct(this.cardId);
+      this.$router.replace("/list");
     },
   },
 };
