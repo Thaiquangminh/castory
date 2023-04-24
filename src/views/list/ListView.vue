@@ -3,11 +3,17 @@
     <TableComponent
       :value="cardList"
       @navigate="handleNavigateToCard"
-      @study="handleClickStudy"
+      @study="handleStudy"
+      @randomStudy="handleRandomStudy"
     />
     <DialogComponent
       typeDialog="remind"
-      :showDialogValue="showDialog"
+      :showDialogValue="showDialogRemind"
+      @closeDialog="handleCloseDialog"
+    />
+    <DialogComponent
+      typeDialog="customRemind"
+      :showDialogValue="showDialogCustomRemind"
       @closeDialog="handleCloseDialog"
     />
   </LayoutList>
@@ -120,18 +126,23 @@ export default {
           remindCard: 42,
         },
       ],
-      showDialog: false,
+      showDialogRemind: false,
+      showDialogCustomRemind: false,
     };
   },
   methods: {
     handleNavigateToCard(id) {
       this.$router.push(`/list/${id}`);
     },
-    handleClickStudy() {
-      this.showDialog = true;
+    handleStudy() {
+      this.showDialogRemind = true;
+    },
+    handleRandomStudy() {
+      this.showDialogCustomRemind = true;
     },
     handleCloseDialog() {
-      this.showDialog = false;
+      this.showDialogCustomRemind = false;
+      this.showDialogRemind = false;
     },
   },
 };
