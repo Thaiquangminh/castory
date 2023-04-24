@@ -80,7 +80,7 @@
                           v-for="(item, index) in items"
                           :key="index"
                           link
-                          @click="handleDelete"
+                          @click="handleEmit(item.emitFunction)"
                         >
                           <v-img :src="getIcon(item.icon)" alt="" />
                           <v-list-item-title
@@ -121,7 +121,7 @@ export default {
         color: "color: #FD443A",
         icon: "trash",
         title: "Xóa thẻ",
-        emitFunction: "handleDelete",
+        emitFunction: "delete",
       },
       {
         color: "color: #3887FE",
@@ -147,6 +147,9 @@ export default {
 
     handleDelete() {
       this.$emit("delete");
+    },
+    handleEmit(action) {
+      return this.$emit(action);
     },
   },
 };
