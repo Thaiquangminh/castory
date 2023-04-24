@@ -107,6 +107,7 @@ export default {
     },
     //   ----------Delete card from list cards action-------- //
     handleConfirmRequest() {
+      this.handleCloseDialog();
       this.handleRemoveProduct(this.cardId);
       this.$router.replace("/list");
     },

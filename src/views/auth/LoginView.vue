@@ -54,12 +54,12 @@
               Log in to start learning
             </div>
             <div v-if="!isValidForm" class="mt-3 login-invalid-helper-text">
-              Your user name or password is wrong
+              Your user name or password is wrong!
             </div>
           </v-card-subtitle>
           <!--  --------------------Start form-------------------- -->
           <v-card-text>
-            <form @submit.prevent="handleSubmitForm">
+            <form @submit.prevent="handleLogin">
               <v-row
                 :class="[
                   'login-group-form',
@@ -72,7 +72,7 @@
                 <label class="login-label" for="username">User name</label>
                 <InputComponent
                   :inputProps="usernameInput"
-                  v-model.trim="username"
+                  v-model.trim="username.value"
                 />
               </v-row>
               <v-row
@@ -87,7 +87,7 @@
                 <label class="login-label" for="password">Password</label>
                 <InputComponent
                   :inputProps="passwordInput"
-                  v-model.trim="password"
+                  v-model.trim="password.value"
                 />
               </v-row>
               <v-row class="login-group-form">
@@ -118,14 +118,46 @@ export default {
         placeholder: "Type in your password",
         id: "password",
       },
-      username: "",
-      password: "",
+      username: {
+        value: "",
+        typeError: "",
+      },
+      password: {
+        value: "",
+        typeError: "",
+      },
       isValidForm: true,
     };
   },
   methods: {
-    handleSubmitForm() {
-      this.isValidForm = !this.isValidForm;
+    validateForm() {
+      if (this.username.value === "") {
+        this.username.typeError = "empty";
+        this.isValidForm = false;
+      } else if (this.username.value.length < 6) {
+        this.username.typeError = "minlength";
+        this.isValidForm = false;
+      } else if (this.username.value.length > 127) {
+        this.username.typeError = "maxlength";
+        this.isValidForm = false;
+      }
+
+      if (this.password.value === "") {
+        this.password.typeError = "empty";
+        this.isValidForm = false;
+      } else if (this.password.value.length < 6) {
+        this.password.typeError = "minlength";
+        this.isValidForm = false;
+      } else if (this.password.value.length > 127) {
+        this.password.typeError = "maxlength";
+        this.isValidForm = false;
+      }
+    },
+    async handleLogin() {
+      await this.validateForm();
+      if (this.isValidForm) {
+        //   login login here
+      }
       console.log(this.username, this.password);
     },
   },
