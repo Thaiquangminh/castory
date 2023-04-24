@@ -144,10 +144,6 @@ export default {
     handleBackPage() {
       this.$emit("back");
     },
-
-    handleDelete() {
-      this.$emit("delete");
-    },
     handleEmit(action) {
       return this.$emit(action);
     },

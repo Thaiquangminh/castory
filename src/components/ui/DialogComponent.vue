@@ -63,20 +63,40 @@
     </v-dialog>
     <!-- ----------Review random dialog------------ -->
     <v-dialog
-      v-if="typeDialog === 'remind'"
+      v-if="typeDialog === 'remind' || typeDialog === 'customRemind'"
       :value="showDialogValue"
       max-width="600"
       @click:outside="handleCloseDialog"
     >
       <v-card class="pa-8">
         <v-card-title class="pa-0 mb-7">
-          <h4 class="dialog-delete-title">Ôn thêm ngẫu nhiên</h4>
+          <h4
+            class="dialog-delete-title"
+            v-text="
+              typeDialog === 'customRemind'
+                ? 'Ôn thêm ngẫu nhiên'
+                : 'Ôn tập trước'
+            "
+          ></h4>
         </v-card-title>
         <v-card-text class="pa-0 mb-6 d-flex flex-column">
-          <span class="dialog-delete-subtitle mb-1">
-            Bạn muốn ôn ngẫu nhiên bao nhiêu thẻ?
+          <span
+            class="dialog-delete-subtitle mb-1"
+            v-text="
+              typeDialog === 'customRemind'
+                ? 'Bạn muốn ôn ngẫu nhiên bao nhiêu thẻ?'
+                : 'Bạn muốn ôn tập trước bao nhiêu ngày?'
+            "
+          >
           </span>
-          <span class="dialog-helper-text">
+          <span
+            class="dialog-helper-text"
+            v-text="
+              typeDialog === 'customRemind'
+                ? 'Nhập số thẻ từ 1 - [tổng số thẻ]'
+                : 'Nhập số ngày ≤ 5'
+            "
+          >
             Nhập số thẻ từ 1 - [tổng số thẻ]
           </span>
         </v-card-text>

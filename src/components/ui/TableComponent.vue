@@ -36,7 +36,7 @@
                   v-for="(item, index) in items"
                   :key="index"
                   link
-                  @click="handleClickStudy"
+                  @click="handleEmit(item.emitFunction)"
                 >
                   <v-img :src="getIcon(item.icon)" alt="" />
                   <v-list-item-title class="ml-4 d-flex">
@@ -67,11 +67,13 @@ export default {
           color: "color: #1BB763",
           icon: "bookmark",
           title: "Ôn tập trước",
+          emitFunction: "study",
         },
         {
           color: "color: #FD443A",
           icon: "openbook",
-          title: "Ôn thêm ngẫu nhiên",
+          title: "Ôn tập ngẫu nhiên",
+          emitFunction: "randomStudy",
         },
       ],
     };
@@ -80,12 +82,11 @@ export default {
     handleNavigate(id) {
       this.$emit("navigate", id);
     },
-    handleClickStudy() {
-      this.$emit("study");
-    },
-    handleClickMenu() {},
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
+    },
+    handleEmit(action) {
+      return this.$emit(action);
     },
   },
 };
