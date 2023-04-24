@@ -33,7 +33,7 @@
           <ButtonComponent
             :title="typeDialog === 'logout' ? 'Đăng xuất' : 'Xoá'"
             class="ml-3"
-            @click="handleLogOut"
+            @click="handleConfirmRequest"
           />
         </v-card-actions>
       </v-card>
@@ -141,8 +141,8 @@ export default {
     handleCloseDialog() {
       this.$emit("closeDialog");
     },
-    handleLogOut() {
-      this.$emit("logOut");
+    handleConfirmRequest() {
+      this.$emit("confirmRequest");
     },
     handleTurnOffDialog() {
       this.$emit("turnOffDialog");
