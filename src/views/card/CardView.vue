@@ -7,6 +7,7 @@
       timeLeft="Còn 1 giờ 16 phút"
       @openDeleteDialog="handleOpenDeleteDialog"
       @back="handleBackPage"
+      @backCard="handleBackCard"
     >
       <v-layout class="d-flex flex-column">
         <v-flex
@@ -58,7 +59,7 @@ import LayoutCard from "@/components/layout/LayoutCard.vue";
 import InputComponent from "@/components/ui/InputComponent.vue";
 import ButtonComponent from "@/components/ui/ButtonComponent.vue";
 import DialogComponent from "@/components/ui/DialogComponent.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -68,11 +69,19 @@ export default {
     LayoutCard,
   },
   created() {
-    console.log(this.$store.getters["card/getCardId"]);
-    this.cardId = this.$store.getters["card/getCardId"];
+    if (localStorage.getItem("cardId") === null) {
+      this.cardId = this.$store.getters["card/getCardId"];
+    } else {
+      this.cardId = localStorage.getItem("cardId");
+    }
+    this.handleGetElementIndex(this.cardId);
+  },
+  mounted() {
+    this.handleSetId(this.$route.params.id);
   },
   data() {
     return {
+      componentKey: 0,
       answerInput: {
         placeholder: "Nhập câu trả lời của bạn",
         id: "answer",
@@ -83,12 +92,18 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("card", [
+      "getPreviousElementId",
+      "getNextElementId",
+      "getCardId",
+    ]),
     getTitle() {
-      return `Tuần ${this.cardId} thi đại học`;
+      return `Tuần ${this.getCardId} thi đại học`;
     },
   },
   methods: {
     ...mapActions("list", ["handleRemoveProduct"]),
+    ...mapActions("card", ["handleGetElementIndex", "handleSetId"]),
     // ---------------------- Handle open and close dialogs -------------------- //
     handleShowDialog() {
       this.showDialog = true;
@@ -100,16 +115,19 @@ export default {
       this.handleShowDialog();
     },
     handleBackPage() {
-      this.$router.push("/list");
+      this.$router.push(`/list`);
     },
     handleAnswer() {
       console.log(this.answerValue);
     },
-    //   ----------Delete card from list cards action-------- //
+    //   ----------Delete card + back card from list cards action-------- //
     handleConfirmRequest() {
       this.handleCloseDialog();
       this.handleRemoveProduct(this.cardId);
-      this.$router.replace("/list");
+      this.$router.push(`/list/${this.getNextElementId}`);
+    },
+    handleBackCard() {
+      this.$router.push(`/list/${this.getPreviousElementId}`);
     },
   },
 };

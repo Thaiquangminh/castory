@@ -7,6 +7,8 @@ export default {
   state() {
     return {
       cardId: "",
+      previousElementId: "",
+      nextElementId: "",
     };
   },
   actions: actions,
