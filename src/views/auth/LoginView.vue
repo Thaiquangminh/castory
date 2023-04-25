@@ -103,6 +103,7 @@
 
 <script>
 import InputComponent from "@/components/ui/InputComponent.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: { InputComponent },
@@ -130,6 +131,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("auth", ["handleSetToken"]),
     validateForm() {
       if (this.username.value === "") {
         this.username.typeError = "empty";
@@ -157,6 +159,8 @@ export default {
       await this.validateForm();
       if (this.isValidForm) {
         //   login login here
+        await this.handleSetToken("token");
+        await this.$router.replace("/list");
       }
       console.log(this.username, this.password, "");
     },

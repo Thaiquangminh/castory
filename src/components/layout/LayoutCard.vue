@@ -38,7 +38,7 @@
           >
             <h4>{{ title }}</h4>
             <span
-              class="layout-card-time-left123"
+              class="layout-card-time-left"
               :class="{
                 'ml-2': $vuetify.breakpoint.smAndUp,
               }"

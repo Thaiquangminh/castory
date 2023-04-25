@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <NavBarComponent />
+      <NavBarComponent v-if="getIsLoggedIn" />
       <router-view v-slot="{ Component, route }">
         <component :is="Component" :key="route.patch" />
       </router-view>
@@ -11,6 +11,7 @@
 
 <script>
 import NavBarComponent from "@/components/ui/NavBarComponent.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -19,6 +20,9 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    ...mapGetters("auth", ["getIsLoggedIn"]),
+  },
 };
 </script>
 
