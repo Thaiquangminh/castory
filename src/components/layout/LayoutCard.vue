@@ -115,7 +115,7 @@ export default {
         color: "color: #1BB763",
         icon: "save",
         title: "Lưu thẻ",
-        emitFunction: "saveCard",
+        emitFunction: "save",
       },
       {
         color: "color: #FD443A",
@@ -127,7 +127,7 @@ export default {
         color: "color: #3887FE",
         icon: "back",
         title: "Quay lại",
-        emitFunction: "backCard",
+        emitFunction: "back",
       },
     ],
   }),
