@@ -23,7 +23,7 @@ const routes = [
   },
   {
     path: "/list/:id",
-    name: "card",
+    name: "cardDetails",
     component: CardView,
   },
 ];

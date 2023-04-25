@@ -2,7 +2,9 @@
   <v-app>
     <v-main>
       <NavBarComponent />
-      <router-view />
+      <router-view v-slot="{ Component, route }">
+        <component :is="Component" :key="route.patch" />
+      </router-view>
     </v-main>
   </v-app>
 </template>
