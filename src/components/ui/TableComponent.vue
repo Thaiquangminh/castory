@@ -3,22 +3,19 @@
     <template v-slot:default>
       <thead class="table-wrapper-header">
         <tr>
-          <th class="text-left table-header-border-left">Bộ thẻ</th>
-          <th class="text-center">Thẻ mới</th>
-          <th class="text-center">Thẻ ôn tập</th>
-          <th class="text-left table-header-border-right"></th>
+          <th v-for="(item, index) in headers" :key="index">{{ item }}</th>
         </tr>
       </thead>
       <tbody class="table-wrapper-content">
         <tr
-          v-for="item in value"
-          :key="item.name"
-          @click="handleNavigate(item.id)"
+          v-for="value in values"
+          :key="value.name"
+          @click="handleNavigate(value.id)"
         >
-          <td class="table-name">{{ item.name }}</td>
-          <td class="text-center table-new-card">{{ item.newCard }}</td>
-          <td class="text-center table-remind-card">{{ item.remindCard }}</td>
-          <td>
+          <td class="table-name">{{ value.name }}</td>
+          <td class="text-center table-new-card">{{ value.newCard }}</td>
+          <td class="text-center table-remind-card">{{ value.remindCard }}</td>
+          <td v-if="haveOptions">
             <v-menu offset-y transition="slide-y-transition" location="end">
               <!-- -------------------Menu list-------------------- -->
               <template v-slot:activator="{ attrs, on }">
@@ -36,7 +33,7 @@
                   v-for="(item, index) in items"
                   :key="index"
                   link
-                  @click="handleEmit(item.emitFunction)"
+                  @click="handleEmit(item.emitFunction, value.id)"
                 >
                   <v-img :src="getIcon(item.icon)" alt="" />
                   <v-list-item-title class="ml-4 d-flex">
@@ -55,9 +52,17 @@
 <script>
 export default {
   props: {
-    value: {
+    values: {
       type: Array,
       default: () => [],
+    },
+    headers: {
+      type: Array,
+      default: () => [],
+    },
+    haveOptions: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -85,8 +90,8 @@ export default {
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
     },
-    handleEmit(action) {
-      return this.$emit(action);
+    handleEmit(action, id) {
+      return this.$emit(action, id);
     },
   },
 };
@@ -100,16 +105,20 @@ table
     margin-right: 1px !important
     color: #FFFFFF !important
     font-weight: 400
+    border-right: 1px solid
+    &:nth-child(2), &:nth-child(3)
+      text-align: center !important
+    &:first-child
+      border-top-left-radius: 13px
+    &:last-child
+      border-top-right-radius: 13px
   tr
     cursor: pointer
     td
+      text-align: center
       font-weight: 600
-
-.table-header-border-left
-  border-top-left-radius: 12px
-
-.table-header-border-right
-  border-top-right-radius: 13px
+      &:first-child
+        text-align: left
 
 .table-wrapper-content
   background-color: #F9FBFC

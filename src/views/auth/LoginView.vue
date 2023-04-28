@@ -59,7 +59,7 @@
           </v-card-subtitle>
           <!--  --------------------Start form-------------------- -->
           <v-card-text>
-            <form @submit.prevent="handleLogin">
+            <form @submit.prevent="handleSubmit">
               <v-row
                 :class="[
                   'login-group-form',
@@ -103,7 +103,7 @@
 
 <script>
 import InputComponent from "@/components/ui/InputComponent.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: { InputComponent },
@@ -128,10 +128,17 @@ export default {
         typeError: "",
       },
       isValidForm: true,
+      errorMessage: "",
     };
   },
+  computed: {
+    ...mapGetters("auth", ["getToken"]),
+    token() {
+      return this.getToken;
+    },
+  },
   methods: {
-    ...mapActions("auth", ["handleSetToken"]),
+    ...mapActions("auth", ["handleSetToken", "handleLogin"]),
     validateForm() {
       if (this.username.value === "") {
         this.username.typeError = "empty";
@@ -155,14 +162,21 @@ export default {
         this.isValidForm = false;
       }
     },
-    async handleLogin() {
+    async handleSubmit() {
+      this.isValidForm = true;
       await this.validateForm();
       if (this.isValidForm) {
-        //   login login here
-        await this.handleSetToken("token");
-        await this.$router.replace("/list");
+        try {
+          await this.handleLogin({
+            username: this.username.value,
+            password: this.password.value,
+          });
+        } catch (error) {
+          this.errorMessage = error;
+        }
+        // logic login here
+        this.token && (await this.$router.replace("/list"));
       }
-      console.log(this.username, this.password, "");
     },
   },
 };

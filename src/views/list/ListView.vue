@@ -1,10 +1,12 @@
 <template>
-  <LayoutList title="Danh sách bộ thẻ từ vựng">
+  <LayoutList title="Danh sách bộ thẻ từ vựng" @goBrowse="handleGoBrowse">
     <TableComponent
-      :value="listCards"
+      :values="listCards"
+      :headers="tableHeaders"
       @navigate="handleNavigateToCard"
       @study="handleStudy"
       @randomStudy="handleRandomStudy"
+      :haveOptions="true"
     />
     <DialogComponent
       typeDialog="remind"
@@ -31,6 +33,7 @@ export default {
     return {
       showDialogRemind: false,
       showDialogCustomRemind: false,
+      tableHeaders: ["Bộ thẻ", "Thẻ mới", "Thẻ ôn tập", ""],
     };
   },
   computed: {
@@ -45,7 +48,11 @@ export default {
       this.handleSetId(id);
       this.$router.push(`/list/${id}`);
     },
-    handleStudy() {
+    handleGoBrowse() {
+      this.$router.push("/browse");
+    },
+    handleStudy(id) {
+      console.log(id);
       this.showDialogRemind = true;
     },
     handleRandomStudy() {

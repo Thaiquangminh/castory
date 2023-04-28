@@ -6,7 +6,11 @@
           <v-card-title class="pa-0">
             <h4>{{ title }}</h4>
           </v-card-title>
-          <ButtonComponent title="Browse" :isGrayBtn="true" />
+          <ButtonComponent
+            title="Browse"
+            :isGrayBtn="true"
+            @click="handleGoBrowse"
+          />
         </v-card>
         <slot></slot>
         <v-flex class="mt-12 d-flex justify-center">
@@ -32,6 +36,11 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+  },
+  methods: {
+    handleGoBrowse() {
+      this.$emit("goBrowse");
     },
   },
 };
