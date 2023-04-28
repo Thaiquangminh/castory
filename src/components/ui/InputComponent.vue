@@ -4,6 +4,7 @@
     :placeholder="inputProps.placeholder"
     :id="inputProps.id"
     @input="handleUpdateValue($event.target.value)"
+    autoComplete
   />
 </template>
 

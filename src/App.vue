@@ -1,4 +1,5 @@
 <template>
+  <!--  123-->
   <v-app>
     <v-main>
       <NavBarComponent v-if="getIsLoggedIn" />
@@ -23,6 +24,9 @@ export default {
   computed: {
     ...mapGetters("auth", ["getIsLoggedIn"]),
   },
+  created() {
+    this.$store.dispatch("auth/handleKeepLogin");
+  },
 };
 </script>
 
@@ -30,4 +34,5 @@ export default {
 // ---------- convert 1 rem = 10px ---------- //
 html
   box-sizing: border-box
+  font-family: Averta-regular
 </style>

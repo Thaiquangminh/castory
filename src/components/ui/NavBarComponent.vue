@@ -62,7 +62,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("auth", ["handleClearToken"]),
+    ...mapActions("auth", ["handleClearLocalStorage"]),
     handleShowDialog() {
       this.showDialog = true;
     },
@@ -71,7 +71,7 @@ export default {
     },
     handleLogOut() {
       this.handleCloseDialog();
-      this.handleClearToken();
+      this.handleClearLocalStorage();
       this.$router.replace("/login");
     },
   },
