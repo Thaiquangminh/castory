@@ -40,8 +40,6 @@ input
   padding: 16px 0 16px 16px
   border: 1px solid #D9DFEA
   border-radius: 12px
-  margin-bottom: 24px
-  margin-top: 8px
   background-color: #F9FBFC
   min-width: 305px
 

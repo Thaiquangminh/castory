@@ -3,10 +3,11 @@
     <TableComponent
       :values="listCards"
       :headers="tableHeaders"
+      :haveOptions="true"
+      cols="3"
       @navigate="handleNavigateToCard"
       @study="handleStudy"
       @randomStudy="handleRandomStudy"
-      :haveOptions="true"
     />
     <DialogComponent
       typeDialog="remind"
@@ -51,8 +52,7 @@ export default {
     handleGoBrowse() {
       this.$router.push("/browse");
     },
-    handleStudy(id) {
-      console.log(id);
+    handleStudy() {
       this.showDialogRemind = true;
     },
     handleRandomStudy() {
