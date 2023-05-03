@@ -1,14 +1,15 @@
 <template>
-  <v-btn text :class="typeButton">
+  <v-btn text :class="typeButton" @click="handleClickEvaluationBtn">
     <img :src="getIcon(prependIcon)" class="mr-2" />
-    <v-flex
+    <div
       :class="{
         easyTypeColor: typeButton === 'easyType',
         normalTypeColor: typeButton === 'normalType',
         hardTypeColor: typeButton === 'hardType',
       }"
-      >{{ title }}</v-flex
     >
+      <span>{{ title }}</span>
+    </div>
   </v-btn>
 </template>
 
@@ -32,6 +33,15 @@ export default {
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
     },
+    handleClickEvaluationBtn() {
+      if (this.typeButton === "easyType") {
+        this.$parent.$emit("clickEasyType");
+      } else if (this.typeButton === "normalType") {
+        this.$parent.$emit("clickNormalType");
+      } else if (this.typeButton === "hardType") {
+        this.$parent.$emit("clickHardType");
+      }
+    },
   },
 };
 </script>
@@ -39,6 +49,7 @@ export default {
 <style lang="sass" scoped>
 button
   text-transform: initial
+  width: 100%
   .hardTypeColor
     color: #F56742
   .normalTypeColor

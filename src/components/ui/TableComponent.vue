@@ -1,5 +1,9 @@
 <template>
-  <v-simple-table fixed-header height="672px">
+  <v-simple-table
+    fixed-header
+    height="672px"
+    style="background-color: #f9fbfc; border-radius: 12px"
+  >
     <template v-slot:default>
       <thead class="table-wrapper-header">
         <tr>
@@ -13,8 +17,15 @@
           @click="handleNavigate(value.id)"
         >
           <td class="table-name">{{ value.name }}</td>
-          <td class="text-center table-new-card">{{ value.newCard }}</td>
-          <td class="text-center table-remind-card">{{ value.remindCard }}</td>
+          <td class="text-center table-new-card" v-if="1 < cols && cols <= 3">
+            {{ value.newCard }}
+          </td>
+          <td
+            class="text-center table-remind-card"
+            v-if="2 < cols && cols <= 3"
+          >
+            {{ value.remindCard }}
+          </td>
           <td v-if="haveOptions">
             <v-menu offset-y transition="slide-y-transition" location="end">
               <!-- -------------------Menu list-------------------- -->
@@ -63,6 +74,10 @@ export default {
     haveOptions: {
       type: Boolean,
       default: false,
+    },
+    cols: {
+      type: Number,
+      default: null,
     },
   },
   data() {

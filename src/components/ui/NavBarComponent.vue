@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="container-navbar bg-blue nav-login" pa-0 ma-0>
-    <v-row class="d-flex justify-center" style="height: 60px">
+    <v-row class="d-flex justify-center" style="height: 60px; margin: 0">
       <v-col
         cols="12"
         md="8"
@@ -9,10 +9,10 @@
         class="d-flex align-center"
         style="padding: 0 12px !important"
       >
-        <v-flex class="nav-login" style="height: 48px">
+        <v-flex class="nav-login">
           <img src="@/assets/images/miniLogo.png" class="center" alt="" />
         </v-flex>
-        <v-flex class="d-flex" style="max-width: 300px; padding-top: 10px">
+        <v-flex class="d-flex" style="max-width: 300px">
           <v-flex class="d-flex justify-end align-center">
             <img
               src="@/assets/icons/account.svg"
@@ -27,7 +27,7 @@
           </v-flex>
           <v-flex class="d-flex justify-end align-center">
             <span style="color: #ffffff; font-size: 14px; font-weight: 600"
-              >Log out</span
+              >Đăng xuất</span
             >
             <img
               src="@/assets/icons/logout.svg"
@@ -85,6 +85,5 @@ export default {
     height: 60px
     width: 103px
 .nav-login
-  max-height: 60px
-  height: 100%
+  height: 60px
 </style>

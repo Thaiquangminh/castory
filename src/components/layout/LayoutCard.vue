@@ -10,7 +10,7 @@
         cols="12"
         md="8"
         :class="{
-          'py-0 px-1': $vuetify.breakpoint.xsOnly,
+          'pt-4 px-1': $vuetify.breakpoint.xsOnly,
         }"
       >
         <!--  ----------Header---------- -->
@@ -27,7 +27,11 @@
                 <p class="mb-0">{{ subtitle }}</p>
               </v-card-subtitle>
             </v-flex>
-            <ButtonComponent title="Browse" isGrayBtn />
+            <ButtonComponent
+              title="Browse"
+              isGrayBtn
+              @click="handleNavigateBrowse"
+            />
           </v-flex>
 
           <v-card-title
@@ -95,6 +99,15 @@
                   </v-col>
                 </v-row>
                 <slot></slot>
+                <div class="mt-8">
+                  <v-divider v-if="haveFooter" class="mb-6"></v-divider>
+                  <FooterCardView
+                    v-if="haveFooter"
+                    @clickEasyType="handleClickEasyType"
+                    @clickNormalType="handleClickNormalType"
+                    @clickHardType="handleClickHardType"
+                  />
+                </div>
               </v-card>
             </v-col>
           </v-row>
@@ -106,9 +119,20 @@
 
 <script>
 import ButtonComponent from "@/components/ui/ButtonComponent.vue";
+import FooterCardView from "@/views/card/FooterCardView.vue";
 
 export default {
-  components: { ButtonComponent },
+  props: {
+    subtitle: String,
+    title: String,
+    type: String,
+    timeLeft: String,
+    haveFooter: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  components: { FooterCardView, ButtonComponent },
   data: () => ({
     items: [
       {
@@ -131,12 +155,6 @@ export default {
       },
     ],
   }),
-  props: {
-    subtitle: String,
-    title: String,
-    type: String,
-    timeLeft: String,
-  },
   methods: {
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
@@ -147,6 +165,19 @@ export default {
     handleEmit(action) {
       return this.$emit(action);
     },
+    handleNavigateBrowse() {
+      this.$router.push("/browse");
+    },
+    // emit study again methods
+    handleClickEasyType() {
+      this.$emit("clickEasyType");
+    },
+    handleClickNormalType() {
+      this.$emit("clickEasyType");
+    },
+    handleClickHardType() {
+      this.$emit("clickEasyType");
+    },
   },
 };
 </script>
@@ -156,7 +187,6 @@ export default {
   margin-top: 56px
   border-radius: 16px
   background-color: #F9FBFC
-  min-height: 585px
   padding: 24px
 
 .layout-card-time-left

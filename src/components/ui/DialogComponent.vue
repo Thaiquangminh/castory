@@ -38,26 +38,46 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- ----------Success dialog------------ -->
+    <!-- ----------Success dialog && Firework dialog------------ -->
     <v-dialog
-      v-if="typeDialog === 'success'"
+      v-if="typeDialog === 'success' || typeDialog === 'complete'"
       :value="showDialogValue"
       max-width="400"
       @click:outside="handleCloseDialog"
     >
-      <v-card class="pa-8 d-flex flex-column" style="border-radius: 12px">
-        <v-flex class="mb-6 d-flex justify-center">
+      <v-card
+        class="pa-8 d-flex flex-column"
+        style="
+          border-radius: 12px;
+          background-image: url('https://ohlaladani.com.br/wp-content/uploads/wallpaper-OHLALADANI_DESKTOP_WALLPAPERS_AVENTURA-2.jpg') !important;
+        "
+      >
+        <v-flex
+          v-if="typeDialog === 'success'"
+          class="mb-6 d-flex justify-center"
+        >
           <img src="@/assets/images/success.svg" alt="" />
         </v-flex>
+        <v-flex
+          v-if="typeDialog === 'complete'"
+          class="mb-6 d-flex justify-center"
+        >
+          <img src="@/assets/images/firework.svg" alt="" />
+        </v-flex>
         <v-card-title class="pa-0 mb-7 text-center">
-          <h5 class="dialog-success-title">
+          <h5 v-if="typeDialog === 'success'" class="dialog-success-title">
             Chúc mừng bạn
             <br />
             đã hoàn thành bộ thẻ
           </h5>
+          <h5 v-if="typeDialog === 'complete'" class="dialog-success-title">
+            Chúc mừng bạn đã hoàn thành
+            <br />
+            bài tập về nhà hôm nay
+          </h5>
         </v-card-title>
         <v-card-actions class="d-flex justify-center pa-0">
-          <ButtonComponent title="OK" @click="handleTurnOffDialog" />
+          <ButtonComponent title="OK" @click="handleCloseDialog" />
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -143,9 +163,6 @@ export default {
     },
     handleConfirmRequest() {
       this.$emit("confirmRequest");
-    },
-    handleTurnOffDialog() {
-      this.$emit("turnOffDialog");
     },
     handleReview() {
       this.$emit("review");

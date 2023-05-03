@@ -51,7 +51,7 @@
             }"
           >
             <div :class="$vuetify.breakpoint.xsOnly && 'text-center'">
-              Đăng nhập để bắt đầu học
+              Đăng nhập để bắt đầu
             </div>
             <div v-if="!isValidForm" class="mt-3 login-invalid-helper-text">
               Your user name or password is wrong!
