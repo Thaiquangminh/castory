@@ -1,10 +1,8 @@
 <template>
   <LayoutList title="Danh sách bộ thẻ từ vựng" @goBrowse="handleGoBrowse">
     <TableComponent
-      :values="listCards"
+      :items="listCards"
       :headers="tableHeaders"
-      :haveOptions="true"
-      cols="3"
       @navigate="handleNavigateToCard"
       @study="handleStudy"
       @randomStudy="handleRandomStudy"
@@ -24,17 +22,31 @@
 
 <script>
 import LayoutList from "@/components/layout/LayoutList.vue";
-import TableComponent from "@/components/ui/TableComponent.vue";
 import DialogComponent from "@/components/ui/DialogComponent.vue";
 import { mapActions, mapGetters } from "vuex";
+import TableComponent from "@/components/ui/TableComponent.vue";
 
 export default {
-  components: { DialogComponent, TableComponent, LayoutList },
+  components: {
+    TableComponent,
+    DialogComponent,
+    LayoutList,
+  },
   data() {
     return {
       showDialogRemind: false,
       showDialogCustomRemind: false,
-      tableHeaders: ["Bộ thẻ", "Thẻ mới", "Thẻ ôn tập", ""],
+      tableHeaders: [
+        { text: "Bộ thẻ", value: "cardSetName", sortable: false },
+        { text: "Thẻ mới", value: "newCard", align: "center", sortable: false },
+        {
+          text: "Thẻ ôn tập",
+          value: "reviewCard",
+          align: "center",
+          sortable: false,
+        },
+        { text: "", value: "actions", align: "center", sortable: false },
+      ],
     };
   },
   computed: {

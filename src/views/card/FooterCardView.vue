@@ -6,7 +6,7 @@
         prependIcon="fa-rotate-right"
         isGrayBtn
       />
-      <span class="text-center" style="width: 108px">1 phút</span>
+      <captionOne class="text-center" style="width: 108px"> 1 phút </captionOne>
     </v-col>
     <v-col cols="12" md="9" sm="9" xs="9">
       <v-row>
@@ -22,7 +22,7 @@
             prependIcon="easy"
             typeButton="easyType"
           />
-          <span>6 phút</span>
+          <captionOne class="mt-1"> 6 phút </captionOne>
         </v-col>
         <v-col
           cols="12"
@@ -35,7 +35,7 @@
             prependIcon="normal"
             typeButton="normalType"
           />
-          <span>10 phút</span>
+          <captionOne class="mt-1"> 10 phút </captionOne>
         </v-col>
         <v-col
           cols="12"
@@ -48,7 +48,7 @@
             prependIcon="hard"
             typeButton="hardType"
           />
-          <span>4 ngày</span>
+          <captionOne class="mt-1"> 4 ngày </captionOne>
         </v-col>
       </v-row>
     </v-col>
@@ -64,8 +64,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-span
-  font-weight: 400
-  font-size: 14px
+captionOne
   margin-top: 4px
 </style>

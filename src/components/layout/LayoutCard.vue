@@ -24,7 +24,9 @@
                 style="cursor: pointer"
               />
               <v-card-subtitle class="pa-0 d-flex align-center ml-2">
-                <p class="mb-0">{{ subtitle }}</p>
+                <captionOne class="mb-0">
+                  {{ subtitle }}
+                </captionOne>
               </v-card-subtitle>
             </v-flex>
             <ButtonComponent
@@ -41,13 +43,13 @@
             }"
           >
             <h4>{{ title }}</h4>
-            <span
-              class="layout-card-time-left"
+            <text-averta-400
               :class="{
                 'ml-2': $vuetify.breakpoint.smAndUp,
               }"
-              >{{ timeLeft }}</span
             >
+              {{ timeLeft }}
+            </text-averta-400>
           </v-card-title>
           <!-- ----------Start header of content---------- -->
           <v-row class="d-flex justify-center">
@@ -59,9 +61,9 @@
                 }"
                 elevation="0"
               >
-                <v-row class="ma-0">
+                <v-row class="ma-0 mb-5">
                   <v-col cols="12" class="d-flex justify-space-between pa-0">
-                    <p class="layout-type">{{ type }}</p>
+                    <h7 class="layout-type">{{ type }}</h7>
                     <!-- --------------------Menu item------------------- -->
                     <v-menu
                       offset-y
@@ -87,11 +89,8 @@
                           @click="handleEmit(item.emitFunction)"
                         >
                           <v-img :src="getIcon(item.icon)" alt="" />
-                          <v-list-item-title
-                            class="ml-4 d-flex"
-                            :style="item.color"
-                          >
-                            {{ item.title }}
+                          <v-list-item-title class="ml-4 d-flex">
+                            <h7 :style="item.color">{{ item.title }}</h7>
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -189,15 +188,11 @@ export default {
   background-color: #F9FBFC
   padding: 24px
 
-.layout-card-time-left
-  color: #384961
-  font-size: 16px
-  font-weight: 400
-
 .layout-type
   padding: 4px
   background-color: #E9EDF5
   border-radius: 6px
+  color: #384961
 
 .layout-list
   min-width: 185px

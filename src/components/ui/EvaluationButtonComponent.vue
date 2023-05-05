@@ -1,15 +1,14 @@
 <template>
   <v-btn text :class="typeButton" @click="handleClickEvaluationBtn">
     <img :src="getIcon(prependIcon)" class="mr-2" />
-    <div
+    <h7
       :class="{
         easyTypeColor: typeButton === 'easyType',
         normalTypeColor: typeButton === 'normalType',
         hardTypeColor: typeButton === 'hardType',
       }"
+      >{{ title }}</h7
     >
-      <span>{{ title }}</span>
-    </div>
   </v-btn>
 </template>
 

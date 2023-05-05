@@ -14,13 +14,8 @@
         </v-card>
         <slot></slot>
         <v-flex class="mt-12 d-flex justify-center">
-          <span style="font-weight: 600"
-            >Đã học 24 thẻ trong:
-            <span style="font-weight: 600"
-              >3.46 phút
-              <span style="font-weight: 400">(17.32 giây/thẻ)</span></span
-            ></span
-          >
+          <h7>Đã học 24 thẻ trong: 3.46 phút</h7> &nbsp;
+          <text-averta-400> (17.32 giây/thẻ) </text-averta-400>
         </v-flex>
       </v-col>
     </v-row>

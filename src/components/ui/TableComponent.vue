@@ -1,88 +1,74 @@
 <template>
-  <v-simple-table
-    fixed-header
-    height="672px"
-    style="background-color: #f9fbfc; border-radius: 12px"
+  <v-data-table
+    height="70vh"
+    :headers="headers"
+    :items="items"
+    :hide-default-footer="true"
+    class="elevation-1"
+    disable-pagination
+    @click:row="(item) => handleNavigate(item.id)"
+    mobile-breakpoint="0"
   >
-    <template v-slot:default>
-      <thead class="table-wrapper-header">
-        <tr>
-          <th v-for="(item, index) in headers" :key="index">{{ item }}</th>
-        </tr>
-      </thead>
-      <tbody class="table-wrapper-content">
-        <tr
-          v-for="value in values"
-          :key="value.name"
-          @click="handleNavigate(value.id)"
-        >
-          <td class="table-name">{{ value.name }}</td>
-          <td class="text-center table-new-card" v-if="1 < cols && cols <= 3">
-            {{ value.newCard }}
-          </td>
-          <td
-            class="text-center table-remind-card"
-            v-if="2 < cols && cols <= 3"
+    <template v-slot:[`item.actions`]="{ item }">
+      <v-menu offset-y transition="slide-y-transition" location="end">
+        <!-- -------------------Menu list-------------------- -->
+        <template v-slot:activator="{ attrs, on }">
+          <img
+            src="@/assets/icons/menu.svg"
+            style="cursor: pointer; padding: 15px 2px"
+            v-bind="attrs"
+            v-on="on"
+            alt=""
+          />
+        </template>
+        <v-list class="pa-0 layout-list">
+          <v-list-item
+            class="px-5 py-1"
+            v-for="(option, index) in options"
+            :key="index"
+            link
+            @click="handleEmit(option.emitFunction, item.id)"
           >
-            {{ value.remindCard }}
-          </td>
-          <td v-if="haveOptions">
-            <v-menu offset-y transition="slide-y-transition" location="end">
-              <!-- -------------------Menu list-------------------- -->
-              <template v-slot:activator="{ attrs, on }">
-                <img
-                  src="@/assets/icons/menu.svg"
-                  style="cursor: pointer; padding: 15px 2px"
-                  v-bind="attrs"
-                  v-on="on"
-                  alt=""
-                />
-              </template>
-              <v-list class="pa-0 layout-list">
-                <v-list-item
-                  class="px-5 py-1"
-                  v-for="(item, index) in items"
-                  :key="index"
-                  link
-                  @click="handleEmit(item.emitFunction, value.id)"
-                >
-                  <v-img :src="getIcon(item.icon)" alt="" />
-                  <v-list-item-title class="ml-4 d-flex">
-                    {{ item.title }}
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </td>
-        </tr>
-      </tbody>
+            <v-img :src="getIcon(option.icon)" alt="" />
+            <v-list-item-title class="ml-4 d-flex">
+              {{ option.title }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </template>
-  </v-simple-table>
+  </v-data-table>
 </template>
 
 <script>
 export default {
   props: {
-    values: {
-      type: Array,
-      default: () => [],
-    },
     headers: {
       type: Array,
       default: () => [],
     },
-    haveOptions: {
-      type: Boolean,
-      default: false,
+    items: {
+      type: Array,
     },
     cols: {
       type: Number,
       default: null,
     },
   },
+  methods: {
+    getIcon(name) {
+      return require("@/assets/icons/" + name + ".svg");
+    },
+    handleEmit(action, id) {
+      return this.$emit(action, id);
+    },
+    handleNavigate(id) {
+      this.$emit("navigate", id);
+    },
+  },
   data() {
     return {
-      items: [
+      options: [
         {
           color: "color: #1BB763",
           icon: "bookmark",
@@ -98,49 +84,29 @@ export default {
       ],
     };
   },
-  methods: {
-    handleNavigate(id) {
-      this.$emit("navigate", id);
-    },
-    getIcon(name) {
-      return require("@/assets/icons/" + name + ".svg");
-    },
-    handleEmit(action, id) {
-      return this.$emit(action, id);
-    },
-  },
 };
 </script>
 
 <style lang="sass" scoped>
-table
-  border-top-right-radius: 3px
-  th
+::v-deep .v-data-table__wrapper
+  .v-data-table-header
     background-color: #453FE3 !important
-    margin-right: 1px !important
-    color: #FFFFFF !important
-    font-weight: 400
-    border-right: 1px solid
-    &:nth-child(2), &:nth-child(3)
-      text-align: center !important
-    &:first-child
-      border-top-left-radius: 13px
-    &:last-child
-      border-top-right-radius: 13px
-  tr
-    cursor: pointer
-    td
-      text-align: center
-      font-weight: 600
+    th
+      border-right: 1px solid
+      color: #FFFFFF !important
       &:first-child
-        text-align: left
-
-.table-wrapper-content
-  background-color: #F9FBFC
-  .table-name
-    color: #1C283D !important
-  .table-new-card
-    color: #3887FE
-  .table-remind-card
-    color: #1BB763
+        border-top-left-radius: 13px
+      &:last-child
+        border-top-right-radius: 13px
+        border-right: none
+  tbody
+    tr
+      cursor: pointer
+      &:last-child
+        border-bottom: thin solid rgba(0, 0, 0, 0.12)
+      td
+        &:first-child
+          border-left: thin solid rgba(0, 0, 0, 0.12)
+        &:last-child
+          border-right: thin solid rgba(0, 0, 0, 0.12)
 </style>
