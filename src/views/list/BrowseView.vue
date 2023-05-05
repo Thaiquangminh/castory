@@ -1,14 +1,14 @@
 <template>
   <v-container>
     <v-row
-      class="mt-8"
+      class="mt-8 d-flex flex-column"
       :class="{
         'px-5': $vuetify.breakpoint.sm,
         'px-4': $vuetify.breakpoint.xsOnly,
       }"
     >
       <v-row>
-        <v-col cols="12" md="3" sm="3" xs="3" class="pa-1">
+        <v-col cols="12" xl="3" lg="3" md="3" sm="3" xs="3" class="pa-1">
           <v-flex
             class="d-flex align-center"
             :class="{
@@ -23,11 +23,11 @@
               style="cursor: pointer"
             />
             <v-flex class="ml-3">
-              <h2>Browse</h2>
+              <h4>Browse</h4>
             </v-flex>
           </v-flex>
         </v-col>
-        <v-col cols="12" md="9" sm="9" xs="9">
+        <v-col cols="12" xl="9" lg="9" md="9" sm="9" xs="9" class="pr-4">
           <v-flex>
             <InputComponent
               :inputProps="inputProps"
@@ -36,12 +36,11 @@
           </v-flex>
         </v-col>
       </v-row>
-      <v-row :class="{ 'mt-1': $vuetify.breakpoint.xsOnly }">
+      <v-row :class="{ 'mt-1': $vuetify.breakpoint.xsOnly }" class="px-4">
         <v-col cols="12" md="3" sm="12" class="pa-1">
           <TableComponent
-            :values="tableGroupCards"
+            :items="tableGroupCards"
             :headers="tableGroupCardsHeader"
-            :cols="1"
           />
         </v-col>
         <v-col
@@ -54,35 +53,39 @@
           <v-row>
             <v-col cols="12" md="6" sm="6" class="pa-1">
               <TableComponent
-                :values="tableCardsDetail"
+                :items="tableCardsDetail"
                 :headers="tableCardDetailHeader"
-                :haveOptions="true"
-                :cols="3"
               />
             </v-col>
-            <v-col cols="12" md="6" sm="6" class="pa-1">
+            <v-col cols="12" md="6" sm="6" class="pa-1 pr-0">
               <v-card class="browse-card-detail" elevation="0">
                 <v-card-title class="mb-2">
-                  <h2 class="browse-card-title">Flower</h2>
+                  <h4 class="browse-card-title">Flower</h4>
                   &nbsp;
-                  <span class="browse-card-title-des">(Đại từ phản thân)</span>
+                  <h7 class="browse-card-title-des">(Đại từ phản thân)</h7>
                 </v-card-title>
                 <v-card-subtitle>
                   <div class="d-flex align-center mb-2">
                     <img src="@/assets/icons/audio.svg" />
-                    <span class="ml-1">/ˈflaʊ.ɚ/</span>
+                    <h7 class="ml-1">/ˈflaʊ.ɚ/</h7>
                   </div>
                   <ul>
-                    <li>Hoa</li>
+                    <li>
+                      <h7>Hoa</h7>
+                    </li>
                   </ul>
                 </v-card-subtitle>
                 <v-divider></v-divider>
-                <v-card-text>
-                  <span class="mb-1">Ví dụ:</span>
-                  <h4 class="mb-1">
+                <v-card-text class="d-flex flex-column">
+                  <captionOne class="mb-1" style="color: #aeb7ca">
+                    Ví dụ:
+                  </captionOne>
+                  <h7 class="mb-1">
                     She was ill so I sent her some flowers to cheer her up.
-                  </h4>
-                  <p>(Cô ấy bị ốm nên tôi đã gửi hoa để khích lệ cô ấy)</p>
+                  </h7>
+                  <text-averta-400>
+                    (Cô ấy bị ốm nên tôi đã gửi hoa để khích lệ cô ấy)
+                  </text-averta-400>
                 </v-card-text>
               </v-card>
             </v-col>
@@ -93,11 +96,11 @@
   </v-container>
 </template>
 <script>
-import TableComponent from "@/components/ui/TableComponent.vue";
 import InputComponent from "@/components/ui/InputComponent.vue";
+import TableComponent from "@/components/ui/TableComponent.vue";
 
 export default {
-  components: { InputComponent, TableComponent },
+  components: { TableComponent, InputComponent },
   data() {
     return {
       inputProps: {
@@ -107,59 +110,83 @@ export default {
       },
       searchValues: "",
 
-      // card title data table
+      // -----------------card title data table------------------
       tableGroupCards: [
-        { name: "Tuần 1 thi đại học (140)" },
-        { name: "Tuần 2 thi đại học (141)" },
-        { name: "Tuần 3 thi đại học (143)" },
-        { name: "Tuần 4 thi đại học (143)" },
-        { name: "Tuần 5 thi đại học (143)" },
-        { name: "Tuần 6 thi đại học (143)" },
-        { name: "Tuần 7 thi đại học (143)" },
-        { name: "Tuần 9 thi đại học (143)" },
-        { name: "Tuần 10 thi đại học (143)" },
-        { name: "Tuần 11 thi đại học (143)" },
-        { name: "Tuần 12 thi đại học (143)" },
-        { name: "Tuần 13 thi đại học (143)" },
-        { name: "Tuần 14 thi đại học (143)" },
-        { name: "Tuần 15 thi đại học (143)" },
+        { id: "1", cardSetName: "Tuần 1 thi đại học (140)" },
+        { id: "2", cardSetName: "Tuần 2 thi đại học (141)" },
+        { id: "3", cardSetName: "Tuần 3 thi đại học (143)" },
+        { id: "4", cardSetName: "Tuần 4 thi đại học (143)" },
+        { id: "5", cardSetName: "Tuần 5 thi đại học (143)" },
+        { id: "6", cardSetName: "Tuần 6 thi đại học (143)" },
+        { id: "7", cardSetName: "Tuần 7 thi đại học (143)" },
+        { id: "8", cardSetName: "Tuần 9 thi đại học (143)" },
+        { id: "9", cardSetName: "Tuần 10 thi đại học (143)" },
+        { id: "10", cardSetName: "Tuần 11 thi đại học (143)" },
+        { id: "11", cardSetName: "Tuần 12 thi đại học (143)" },
+        { id: "12", cardSetName: "Tuần 13 thi đại học (143)" },
+        { id: "13", cardSetName: "Tuần 14 thi đại học (143)" },
+        { id: "14", cardSetName: "Tuần 15 thi đại học (143)" },
       ],
-      tableGroupCardsHeader: ["Tất cả bộ thẻ"],
+      tableGroupCardsHeader: [
+        {
+          text: "Tất cả bộ thẻ",
+          value: "cardSetName",
+          sortable: false,
+        },
+      ],
 
-      //   card details data table
+      //   ----------card details data table----------
       tableCardsDetail: [
         {
-          id: "0",
-          name: "Bộ thẻ đã lưu",
-          newCard: 0,
-          remindCard: 0,
-        },
-        {
           id: "1",
-          name: "Tuần thi 1 đại học",
-          newCard: 140,
-          remindCard: 42,
+          name: "Hoa",
+          dueDate: "25/04/23",
+          cardSetName: "Tuần 1 thi đại học",
         },
         {
           id: "2",
-          name: "Tuần thi 2 đại học",
-          newCard: 140,
-          remindCard: 42,
+          name: "Hoa",
+          dueDate: "25/04/23",
+          cardSetName: "Tuần 1 thi đại học",
         },
         {
           id: "3",
-          name: "Tuần thi 3 đại học",
-          newCard: 140,
-          remindCard: 42,
+          name: "Hoa",
+          dueDate: "25/04/23",
+          cardSetName: "Tuần 1 thi đại học",
         },
         {
           id: "4",
-          name: "Tuần thi 4 đại học",
-          newCard: 140,
-          remindCard: 42,
+          name: "Hoa",
+          dueDate: "25/04/23",
+          cardSetName: "Tuần 1 thi đại học",
         },
       ],
-      tableCardDetailHeader: ["Thẻ", "Đến hạn", "Bộ thẻ", ""],
+      tableCardDetailHeader: [
+        {
+          text: "Thẻ",
+          value: "name",
+          sortable: false,
+        },
+        {
+          text: "Đến hạn",
+          value: "dueDate",
+          sortable: false,
+          align: "center",
+        },
+        {
+          text: "Bộ thẻ",
+          value: "cardSetName",
+          sortable: false,
+          align: "center",
+        },
+        {
+          text: "",
+          value: "actions",
+          sortable: false,
+          align: "center",
+        },
+      ],
     };
   },
   methods: {
@@ -175,7 +202,7 @@ export default {
   background-color: #F9FBFC
   border-radius: 12px
   border: 1px solid #E9EDF5
-  min-height: 672px
+  min-height: 70vh
 .browse-card-title
   color: #1BB763
 .browse-card-title-des

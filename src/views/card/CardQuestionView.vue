@@ -25,7 +25,9 @@
         <!--  --------------------Input answer------------------- -->
         <div>
           <div class="mb-2">
-            <label for="answer" class="card-answer">Câu trả lời:</label>
+            <label for="answer">
+              <h7>Câu trả lời:</h7>
+            </label>
           </div>
           <InputComponent :inputProps="answerInput" v-model="answerValue" />
         </div>
@@ -36,10 +38,12 @@
               'flex-column': $vuetify.breakpoint.xsOnly,
             }"
           >
-            <div>Số thẻ mới:<span class="ml-2 text-1">140</span></div>
-            <div :class="{ 'ml-8': $vuetify.breakpoint.smAndUp }">
+            <captionOne>
+              Số thẻ mới:<span class="ml-2 text-1">140</span>
+            </captionOne>
+            <captionOne :class="{ 'ml-8': $vuetify.breakpoint.smAndUp }">
               Số thẻ cần ôn:<span class="ml-2 text-2">42</span>
-            </div>
+            </captionOne>
           </div>
           <ButtonComponent
             title="Đáp án"
@@ -139,12 +143,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-h4
-  font-size: 28px
-  font-weight: 400
-.card-answer
-  font-weight: 600
-
 // will change later
 .text-1
   color: #3887FE

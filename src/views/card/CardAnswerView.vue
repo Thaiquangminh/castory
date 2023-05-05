@@ -14,7 +14,7 @@
     >
       <v-layout
         class="d-flex flex-column align-center"
-        style="min-height: 432px"
+        style="min-height: 332px"
       >
         <div
           class="mb-2 justify-center d-flex"
@@ -24,23 +24,29 @@
         >
           <!--  ----------------- Question title ------------------- -->
           <h4>
-            Phân biệt <span class="font-weight-bold text-2">elder</span> và
-            <span class="font-weight-bold text-2">elderly</span>
+            Phân biệt <span class="text-2">elder</span> và
+            <span class="text-2">elderly</span>
           </h4>
         </div>
         <!--  ----------------- Answer content ------------------ -->
         <!--  ----------------------Example content--------------------      -->
         <div class="mt-4 text-center">
-          <h7 class="font-weight-bold">My elder brother</h7>
-          <div class="font-weight-light text-center">(Anh trai tôi.)</div>
+          <h7>My elder brother</h7>
+          <text-averta-400 class="text-center">
+            (Anh trai tôi.)
+          </text-averta-400>
         </div>
         <div class="mt-4 text-center">
-          <h7 class="font-weight-bold"
-            >Children have no respect for their elders nowadays.</h7
-          >
-          <div class="font-weight-light text-center">
+          <h7>Children have no respect for their elders nowadays.</h7>
+          <text-averta-400 class="text-center">
             (Trẻ em ngày nay không còn tôn trọng người lớn tuổi.)
-          </div>
+          </text-averta-400>
+        </div>
+        <div class="mt-4 text-center">
+          <h7>My elder brother</h7>
+          <text-averta-400 class="text-center">
+            (Anh trai tôi.)
+          </text-averta-400>
         </div>
       </v-layout>
       <DialogComponent

@@ -12,23 +12,31 @@
         <v-flex class="nav-login">
           <img src="@/assets/images/miniLogo.png" class="center" alt="" />
         </v-flex>
-        <v-flex class="d-flex" style="max-width: 300px">
+        <!--        User info and logout for SM and up-->
+        <v-flex
+          class="d-flex"
+          style="max-width: 300px"
+          v-if="getIsLoggedIn && $vuetify.breakpoint.smAndUp"
+        >
           <v-flex class="d-flex justify-end align-center">
             <img
               src="@/assets/icons/account.svg"
               alt=""
               style="width: 32px; height: 32px"
             />
-            <span
+            <h6
               class="ml-3"
               style="color: #ffffff; font-size: 16px; font-weight: 600"
-              >Nguyen Van A</span
             >
+              Nguyen Van A
+            </h6>
           </v-flex>
           <v-flex class="d-flex justify-end align-center">
-            <span style="color: #ffffff; font-size: 14px; font-weight: 600"
-              >Đăng xuất</span
+            <captionTwo
+              style="color: #ffffff; font-size: 14px; font-weight: 600"
             >
+              Đăng xuất
+            </captionTwo>
             <img
               src="@/assets/icons/logout.svg"
               alt=""
@@ -36,6 +44,59 @@
               style="width: 13px; height: 16px; cursor: pointer"
               @click="handleShowDialog"
             />
+          </v-flex>
+        </v-flex>
+        <!--        User info and logout for XS only-->
+        <v-flex v-if="getIsLoggedIn && $vuetify.breakpoint.xsOnly">
+          <v-flex class="d-flex justify-end align-center">
+            <v-menu
+              offset-y
+              transition="slide-y-transition"
+              location="end"
+              min-width="200"
+            >
+              <!-- -------------------Menu list-------------------- -->
+              <template v-slot:activator="{ attrs, on }">
+                <div class="d-flex align-center" v-bind="attrs" v-on="on">
+                  <img
+                    src="@/assets/icons/account.svg"
+                    alt=""
+                    style="width: 32px; height: 32px"
+                  />
+                  <img
+                    src="@/assets/icons/ArrowDown.svg"
+                    style="width: 16px; height: 16px"
+                    alt=""
+                  />
+                </div>
+              </template>
+              <v-list class="pa-0 layout-list">
+                <v-list-item
+                  class="d-flex justify-end align-center"
+                  style="border-bottom: 1px solid #0000001a"
+                >
+                  <h6>Nguyen Van A</h6>
+                </v-list-item>
+                <v-list-item>
+                  <v-flex
+                    class="d-flex justify-end align-center mb-1 logout-mobile"
+                    @click="handleShowDialog"
+                  >
+                    <captionTwo
+                      style="color: #453fe3; font-size: 14px; font-weight: 600"
+                    >
+                      Đăng xuất
+                    </captionTwo>
+                    <img
+                      src="@/assets/icons/logout-mobile.svg"
+                      alt=""
+                      class="ml-3"
+                      style="width: 13px; height: 16px"
+                    />
+                  </v-flex>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-flex>
         </v-flex>
       </v-col>
@@ -51,7 +112,7 @@
 
 <script>
 import DialogComponent from "@/components/ui/DialogComponent.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "NavBarComponent",
@@ -75,6 +136,9 @@ export default {
       this.$router.replace("/login");
     },
   },
+  computed: {
+    ...mapGetters("auth", ["getIsLoggedIn"]),
+  },
 };
 </script>
 
@@ -86,4 +150,6 @@ export default {
     width: 103px
 .nav-login
   height: 60px
+.logout-mobile
+  cursor: pointer
 </style>

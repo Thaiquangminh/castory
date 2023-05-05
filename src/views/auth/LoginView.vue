@@ -51,7 +51,9 @@
             }"
           >
             <div :class="$vuetify.breakpoint.xsOnly && 'text-center'">
-              Đăng nhập để bắt đầu học
+              <text-averta-400 style="color: #384961 !important">
+                Đăng nhập để bắt đầu học
+              </text-averta-400>
             </div>
             <div v-if="!isValidForm" class="mt-3 login-invalid-helper-text">
               Your user name or password is wrong!
@@ -69,9 +71,9 @@
                   },
                 ]"
               >
-                <label class="login-label mb-2" for="username"
-                  >Tên đăng nhập</label
-                >
+                <label class="login-label mb-2" for="username">
+                  <h7>Tên đăng nhập</h7>
+                </label>
                 <InputComponent
                   :inputProps="usernameInput"
                   v-model.trim="username.value"
@@ -86,14 +88,18 @@
                   },
                 ]"
               >
-                <label class="login-label mb-2" for="password">Mật khẩu</label>
+                <label class="login-label mb-2" for="password">
+                  <h7>Mật khẩu</h7>
+                </label>
                 <InputComponent
                   :inputProps="passwordInput"
                   v-model.trim="password.value"
                 />
               </v-row>
               <v-row class="login-group-form">
-                <v-btn type="submit" text class="login-btn">Đăng nhập</v-btn>
+                <v-btn type="submit" text class="login-btn">
+                  <h7 class="login-btn-text">Đăng nhập</h7>
+                </v-btn>
               </v-row>
             </form>
           </v-card-text>
@@ -230,11 +236,12 @@ form
       font-weight: 600
     .login-btn
       background-color: #453FE3
-      color: #FFFFFF !important
       border-radius: 12px !important
       margin-top: 24px
       padding: 28px 0 !important
-
+      h7
+        color: #FFFFFF !important
+        text-transform: initial
 
 .login-input::placeholder
   color: #AEB7CA
