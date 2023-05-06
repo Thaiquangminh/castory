@@ -1,6 +1,6 @@
 export default {
-  getCardId(state) {
-    return state.cardId;
+  getSetCardId(state) {
+    return state.setCardId;
   },
   getPreviousElementId(state) {
     return state.previousElementId;

@@ -5,6 +5,7 @@
       :class="{
         'mt-8': $vuetify.breakpoint.smAndUp,
       }"
+      @keyup.enter="pressEnter"
     >
       <v-col
         cols="12"
@@ -176,6 +177,10 @@ export default {
     },
     handleClickHardType() {
       this.$emit("clickEasyType");
+    },
+    //   handle press enter
+    pressEnter() {
+      this.$emit("pressEnter");
     },
   },
 };

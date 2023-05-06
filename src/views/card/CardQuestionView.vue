@@ -7,6 +7,7 @@
       timeLeft="Còn 1 giờ 16 phút"
       @openDeleteDialog="handleOpenDeleteDialog"
       @back="handleBackPage"
+      @pressEnter="handleAnswer"
       @backCard="handleBackCard"
     >
       <v-layout class="d-flex flex-column" style="min-height: 432px">
@@ -77,12 +78,12 @@ export default {
     LayoutCard,
   },
   created() {
-    if (localStorage.getItem("cardId") === null) {
-      this.cardId = this.$store.getters["card/getCardId"];
+    if (localStorage.getItem("setCardId") === null) {
+      this.setCardId = this.$store.getters["card/getSetCardId"];
     } else {
-      this.cardId = localStorage.getItem("cardId");
+      this.setCardId = localStorage.getItem("setCardId");
     }
-    this.handleGetElementIndex(this.cardId);
+    this.handleGetElementIndex(this.setCardId);
   },
   mounted() {
     this.handleSetId(this.$route.params.id);
@@ -95,7 +96,7 @@ export default {
         id: "answer",
       },
       answerValue: "",
-      cardId: "",
+      setCardId: "",
       showDialog: false,
     };
   },
@@ -103,10 +104,10 @@ export default {
     ...mapGetters("card", [
       "getPreviousElementId",
       "getNextElementId",
-      "getCardId",
+      "getSetCardId",
     ]),
     getTitle() {
-      return `Tuần ${this.getCardId} thi đại học`;
+      return `Tuần ${this.getSetCardId} thi đại học`;
     },
   },
   methods: {
@@ -127,12 +128,12 @@ export default {
     },
     handleAnswer() {
       console.log(this.answerValue);
-      this.$router.push(`/answer/${this.cardId}`);
+      this.$router.push(`/answer/${this.setCardId}`);
     },
     //   ----------Delete card + back card from list cards action-------- //
     handleConfirmRequest() {
       this.handleCloseDialog();
-      this.handleRemoveProduct(this.cardId);
+      this.handleRemoveProduct(this.setCardId);
       this.$router.push(`/list/${this.getNextElementId}`);
     },
     handleBackCard() {

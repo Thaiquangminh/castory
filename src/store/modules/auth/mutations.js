@@ -12,7 +12,7 @@ export default {
     state.userId = null;
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
-    localStorage.removeItem("cardId");
+    localStorage.removeItem("setCardId");
   },
   handleKeepLogin(state, payload) {
     state.token = payload;

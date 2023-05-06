@@ -3,10 +3,11 @@ import VueRouter from "vue-router";
 import LoginView from "@/views/auth/LoginView.vue";
 import AdminLoginView from "@/views/auth/AdminLoginView.vue";
 import ListView from "@/views/list/ListView.vue";
-import BrowseView from "@/views/list/BrowseView.vue";
+import BrowseView from "@/views/browse/BrowseView.vue";
 import CardQuestionView from "@/views/card/CardQuestionView.vue";
 import CardAnswerView from "@/views/card/CardAnswerView.vue";
-// import store from "@/store";
+import BrowseCardView from "@/views/browse/BrowseCardView.vue";
+import BrowseCardDetailView from "@/views/browse/BrowseCardDetailView.vue";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,18 @@ const routes = [
     path: "/browse",
     name: "browse",
     component: BrowseView,
+    meta: { needLogin: true },
+  },
+  {
+    path: "/browse/:id",
+    name: "browseCard",
+    component: BrowseCardView,
+    meta: { needLogin: true },
+  },
+  {
+    path: "/browse/card/:id",
+    name: "browseCardDetails",
+    component: BrowseCardDetailView,
     meta: { needLogin: true },
   },
 ];

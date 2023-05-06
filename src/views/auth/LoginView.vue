@@ -30,7 +30,8 @@
         :class="[
           {
             'login-wrapper-form': $vuetify.breakpoint.mdAndUp,
-            'login-col-sm': $vuetify.breakpoint.smAndDown,
+            'login-col-sm': $vuetify.breakpoint.smOnly,
+            'px-0': $vuetify.breakpoint.xsOnly,
           },
         ]"
         :style="$vuetify.breakpoint.mdAndUp ? 'max-width: 400px' : ''"
@@ -41,7 +42,10 @@
             class="mb-2"
             :class="$vuetify.breakpoint.xsOnly ? 'd-flex justify-center' : ' '"
           >
-            <h3>Welcome to <span class="castory">Castory</span></h3>
+            <h3 v-if="$vuetify.breakpoint.smAndUp">
+              Welcome to <span class="castory">Castory</span>
+            </h3>
+            <h4 v-else>Welcome to <span class="castory">Castory</span></h4>
           </v-card-title>
           <v-card-subtitle
             class="ml-1 pb-0 d-flex flex-column"
@@ -60,7 +64,7 @@
             </div>
           </v-card-subtitle>
           <!--  --------------------Start form-------------------- -->
-          <v-card-text>
+          <v-card-text :class="{ 'px-0': $vuetify.breakpoint.xsOnly }">
             <form @submit.prevent="handleSubmit">
               <v-row
                 :class="[
@@ -196,7 +200,7 @@ export default {
 
 .login-wrapper
   padding-top: 1px !important
-  height: 100vh
+  height: 100%
   .login-row
     height: 95vh
     width: 95vw
@@ -271,7 +275,6 @@ form
     margin: 87px 0 0 0
     width: 100%
     .login-group-form-card
-      height: 100vh
       .v-card__title
         justify-content: center!important
       .v-card__subtitle
