@@ -1,21 +1,34 @@
 <template>
-  <v-row class="d-flex align-center">
-    <v-col cols="12" md="3" sm="3" xs="3" class="d-flex flex-column">
+  <v-row
+    class="d-flex align-center"
+    :class="$vuetify.breakpoint.xsOnly ? 'flex-nowrap' : ''"
+  >
+    <!--    btn học lại-->
+    <v-col
+      cols="12"
+      md="3"
+      sm="3"
+      xs="3"
+      class="d-flex flex-column"
+      :class="$vuetify.breakpoint.xsOnly ? 'mw-25' : ''"
+    >
       <ButtonComponent
         title="Học lại"
         prependIcon="fa-rotate-right"
         isGrayBtn
       />
-      <captionOne class="text-center" style="width: 108px"> 1 phút </captionOne>
+      <captionOne class="text-center"> 1 phút </captionOne>
     </v-col>
+    <!--    chọn option khó dễ -->
     <v-col cols="12" md="9" sm="9" xs="9">
       <v-row>
         <v-col
           cols="12"
           md="4"
           sm="4"
-          xs="4"
+          xs="3"
           class="d-flex flex-column align-center px-1"
+          :class="$vuetify.breakpoint.xsOnly ? 'mw-25' : ''"
         >
           <EvaluationButtonComponent
             title="Dễ"
@@ -28,7 +41,7 @@
           cols="12"
           md="4"
           sm="4"
-          xs="4"
+          :class="$vuetify.breakpoint.xsOnly ? 'mw-25' : ''"
           class="d-flex flex-column align-center px-1"
           ><EvaluationButtonComponent
             title="Tốt"
@@ -43,6 +56,7 @@
           sm="4"
           xs="4"
           class="d-flex flex-column align-center px-1"
+          :class="$vuetify.breakpoint.xsOnly ? 'mw-25' : ''"
           ><EvaluationButtonComponent
             title="Khó"
             prependIcon="hard"
@@ -66,4 +80,6 @@ export default {
 <style lang="sass" scoped>
 captionOne
   margin-top: 4px
+.mw-25
+  max-width: 25%
 </style>

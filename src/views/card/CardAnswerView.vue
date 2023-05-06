@@ -67,12 +67,12 @@ export default {
   components: { DialogComponent, LayoutCard },
   data() {
     return {
-      cardId: null,
+      setCardId: null,
       showDialog: false,
     };
   },
   created() {
-    this.cardId = localStorage.getItem("cardId");
+    this.setCardId = localStorage.getItem("setCardId");
   },
   methods: {
     ...mapActions("list", ["handleRemoveProduct"]),
@@ -94,7 +94,7 @@ export default {
     },
     handleConfirmRequest() {
       this.handleCloseDialog();
-      this.handleRemoveProduct(this.cardId);
+      this.handleRemoveProduct(this.setCardId);
     },
     //   handle study again
     handleClickEasyType() {
@@ -102,9 +102,9 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("card", ["getCardId"]),
+    ...mapGetters("card", ["getSetCardId"]),
     getTitle() {
-      return `Tuần ${this.getCardId} thi đại học`;
+      return `Tuần ${this.getSetCardId} thi đại học`;
     },
   },
 };

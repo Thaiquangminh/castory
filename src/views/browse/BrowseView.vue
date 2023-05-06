@@ -8,7 +8,7 @@
       }"
     >
       <v-row>
-        <v-col cols="12" xl="3" lg="3" md="3" sm="3" xs="3" class="pa-1">
+        <v-col cols="12" md="3" sm="3" xs="3" class="pa-1">
           <v-flex
             class="d-flex align-center"
             :class="{
@@ -17,17 +17,31 @@
             }"
           >
             <img
+              v-if="$vuetify.breakpoint.smAndUp"
               src="@/assets/icons/button-back.svg"
               alt=""
               @click="handleBackPage"
               style="cursor: pointer"
             />
-            <v-flex class="ml-3">
+            <v-flex
+              class="ml-3"
+              :class="{ 'pl-1': $vuetify.breakpoint.xsOnly }"
+            >
               <h4>Browse</h4>
             </v-flex>
           </v-flex>
         </v-col>
-        <v-col cols="12" xl="9" lg="9" md="9" sm="9" xs="9" class="pr-4">
+        <v-col
+          cols="12"
+          md="9"
+          sm="9"
+          xs="9"
+          class="pr-4"
+          :class="{
+            'px-5': $vuetify.breakpoint.xsOnly,
+            'py-4': $vuetify.breakpoint.xsOnly,
+          }"
+        >
           <v-flex>
             <InputComponent
               :inputProps="inputProps"
@@ -39,8 +53,15 @@
       <v-row :class="{ 'mt-1': $vuetify.breakpoint.xsOnly }" class="px-4">
         <v-col cols="12" md="3" sm="12" class="pa-1">
           <TableComponent
+            v-if="$vuetify.breakpoint.smAndUp"
             :items="tableGroupCards"
             :headers="tableGroupCardsHeader"
+          />
+          <TableComponent
+            v-if="$vuetify.breakpoint.xsOnly"
+            :items="tableGroupCards"
+            :headers="tableGroupCardsHeader"
+            @navigate="handleGoBrowseCard"
           />
         </v-col>
         <v-col
@@ -98,6 +119,7 @@
 <script>
 import InputComponent from "@/components/ui/InputComponent.vue";
 import TableComponent from "@/components/ui/TableComponent.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: { TableComponent, InputComponent },
@@ -119,13 +141,13 @@ export default {
         { id: "5", cardSetName: "Tuần 5 thi đại học (143)" },
         { id: "6", cardSetName: "Tuần 6 thi đại học (143)" },
         { id: "7", cardSetName: "Tuần 7 thi đại học (143)" },
-        { id: "8", cardSetName: "Tuần 9 thi đại học (143)" },
-        { id: "9", cardSetName: "Tuần 10 thi đại học (143)" },
-        { id: "10", cardSetName: "Tuần 11 thi đại học (143)" },
-        { id: "11", cardSetName: "Tuần 12 thi đại học (143)" },
-        { id: "12", cardSetName: "Tuần 13 thi đại học (143)" },
-        { id: "13", cardSetName: "Tuần 14 thi đại học (143)" },
-        { id: "14", cardSetName: "Tuần 15 thi đại học (143)" },
+        { id: "8", cardSetName: "Tuần 8 thi đại học (143)" },
+        { id: "9", cardSetName: "Tuần 9 thi đại học (143)" },
+        { id: "10", cardSetName: "Tuần 10 thi đại học (143)" },
+        { id: "11", cardSetName: "Tuần 11 thi đại học (143)" },
+        { id: "12", cardSetName: "Tuần 12 thi đại học (143)" },
+        { id: "13", cardSetName: "Tuần 13 thi đại học (143)" },
+        { id: "14", cardSetName: "Tuần 14 thi đại học (143)" },
       ],
       tableGroupCardsHeader: [
         {
@@ -190,8 +212,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions("card", ["handleSetId"]),
     handleBackPage() {
       this.$router.replace("/list");
+    },
+    handleGoBrowseCard(id) {
+      this.handleSetId(id);
+      this.$router.push(`/browse/${id}`);
     },
   },
 };
