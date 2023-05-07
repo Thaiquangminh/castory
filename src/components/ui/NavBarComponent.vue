@@ -9,7 +9,7 @@
         class="d-flex align-center"
         style="padding: 0 12px !important"
       >
-        <v-flex class="nav-login">
+        <v-flex class="nav-login" @click="handleBackList">
           <img src="@/assets/images/miniLogo.png" class="center" alt="" />
         </v-flex>
         <!--        User info and logout for SM and up-->
@@ -24,19 +24,10 @@
               alt=""
               style="width: 32px; height: 32px"
             />
-            <h6
-              class="ml-3"
-              style="color: #ffffff; font-size: 16px; font-weight: 600"
-            >
-              Nguyen Van A
-            </h6>
+            <h6 class="ml-3" style="color: #ffffff">Nguyen Van A</h6>
           </v-flex>
           <v-flex class="d-flex justify-end align-center">
-            <captionTwo
-              style="color: #ffffff; font-size: 14px; font-weight: 600"
-            >
-              Đăng xuất
-            </captionTwo>
+            <captionTwo style="color: #ffffff"> Đăng xuất </captionTwo>
             <img
               src="@/assets/icons/logout.svg"
               alt=""
@@ -135,6 +126,9 @@ export default {
       this.handleClearLocalStorage();
       this.$router.replace("/login");
     },
+    handleBackList() {
+      if (this.$route.path !== "list") this.$router.push("/list");
+    },
   },
   computed: {
     ...mapGetters("auth", ["getIsLoggedIn"]),
@@ -149,6 +143,7 @@ export default {
     height: 60px
     width: 103px
 .nav-login
+  cursor: pointer
   height: 60px
 .logout-mobile
   cursor: pointer

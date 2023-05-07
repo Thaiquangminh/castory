@@ -1,5 +1,5 @@
 <template>
-  <LayoutList title="Danh sách bộ thẻ từ vựng" @goBrowse="handleGoBrowse">
+  <LayoutList title="Danh sách bộ thẻ" @goBrowse="handleGoBrowse">
     <TableComponent
       :items="listCards"
       :headers="tableHeaders"

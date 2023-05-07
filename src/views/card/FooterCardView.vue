@@ -20,8 +20,14 @@
       <captionOne class="text-center"> 1 phút </captionOne>
     </v-col>
     <!--    chọn option khó dễ -->
-    <v-col cols="12" md="9" sm="9" xs="9">
-      <v-row>
+    <v-col
+      cols="12"
+      md="9"
+      sm="9"
+      xs="9"
+      :class="$vuetify.breakpoint.xsOnly ? 'mw-83' : ''"
+    >
+      <v-row class="d-flex justify-center">
         <v-col
           cols="12"
           md="4"
@@ -82,4 +88,6 @@ captionOne
   margin-top: 4px
 .mw-25
   max-width: 25%
+.mw-83
+  max-width: 83%
 </style>

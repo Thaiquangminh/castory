@@ -13,6 +13,7 @@ export default {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("setCardId");
+    localStorage.removeItem("mobileScreen");
   },
   handleKeepLogin(state, payload) {
     state.token = payload;

@@ -3,19 +3,12 @@
     <v-row
       class="mt-8 d-flex flex-column"
       :class="{
-        'px-5': $vuetify.breakpoint.sm,
         'px-4': $vuetify.breakpoint.xsOnly,
       }"
     >
       <v-row>
         <v-col cols="12" md="3" sm="3" xs="3" class="pa-1 pl-5">
-          <v-flex
-            class="d-flex align-center"
-            :class="{
-              'pa-4': $vuetify.breakpoint.smAndUp,
-              'mb-3': $vuetify.breakpoint.smAndUp,
-            }"
-          >
+          <v-flex class="d-flex align-center">
             <img
               src="@/assets/icons/button-back.svg"
               alt=""
@@ -23,7 +16,7 @@
               style="cursor: pointer"
             />
             <v-flex class="ml-3">
-              <h4>Tuần thi {{ getSetCardId }}</h4>
+              <h4>Tuần thi {{ setCardId }}</h4>
             </v-flex>
           </v-flex>
         </v-col>
@@ -49,8 +42,8 @@
       <v-row :class="{ 'mt-1': $vuetify.breakpoint.xsOnly }" class="px-4">
         <v-col cols="12" sm="12" class="pa-1">
           <TableComponent
-            :items="tableCardsDetail"
-            :headers="tableCardDetailHeader"
+            :items="getCardSetDetails"
+            :headers="cardSetDetailHeader"
             @navigate="handleGoBrowseCardDetails"
           />
         </v-col>
@@ -76,33 +69,7 @@ export default {
       setCardId: "",
 
       //   ----------card details data table----------
-      tableCardsDetail: [
-        {
-          id: "1",
-          name: "Hoa1",
-          dueDate: "25/04/23",
-          cardSetName: "Tuần 1 thi đại học",
-        },
-        {
-          id: "2",
-          name: "Hoa2",
-          dueDate: "25/04/23",
-          cardSetName: "Tuần 1 thi đại học",
-        },
-        {
-          id: "3",
-          name: "Hoa3",
-          dueDate: "25/04/23",
-          cardSetName: "Tuần 1 thi đại học",
-        },
-        {
-          id: "4",
-          name: "Hoa4",
-          dueDate: "25/04/23",
-          cardSetName: "Tuần 1 thi đại học",
-        },
-      ],
-      tableCardDetailHeader: [
+      cardSetDetailHeader: [
         {
           text: "Thẻ",
           value: "name",
@@ -129,6 +96,9 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters("browse", ["getCardSetDetails"]),
+  },
   methods: {
     handleBackPage() {
       this.$router.replace("/browse");
@@ -136,9 +106,6 @@ export default {
     handleGoBrowseCardDetails(id) {
       this.$router.push(`/browse/card/${id}`);
     },
-  },
-  computed: {
-    ...mapGetters("card", ["getSetCardId"]),
   },
 };
 </script>

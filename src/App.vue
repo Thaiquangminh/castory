@@ -26,6 +26,7 @@ export default {
   components: { NavBarComponent },
 
   data: () => ({
+    mobileScreen: false,
     overlay: false,
   }),
   computed: {
@@ -33,6 +34,14 @@ export default {
   },
   created() {
     this.$store.dispatch("auth/handleKeepLogin");
+  },
+  mounted() {
+    if (this.$vuetify.breakpoint.xsOnly) {
+      this.mobileScreen = true;
+    } else {
+      this.mobileScreen = false;
+    }
+    localStorage.setItem("mobileScreen", this.mobileScreen);
   },
 };
 </script>
