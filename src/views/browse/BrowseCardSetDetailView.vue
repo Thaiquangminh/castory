@@ -3,19 +3,12 @@
     <v-row
       class="mt-8 d-flex flex-column"
       :class="{
-        'px-5': $vuetify.breakpoint.sm,
         'px-4': $vuetify.breakpoint.xsOnly,
       }"
     >
       <v-row>
-        <v-col cols="12" md="3" sm="3" xs="3" class="pa-1 pl-5">
-          <v-flex
-            class="d-flex align-center mb-4"
-            :class="{
-              'pa-4': $vuetify.breakpoint.smAndUp,
-              'mb-3': $vuetify.breakpoint.smAndUp,
-            }"
-          >
+        <v-col cols="12" sm="3" class="pa-1 pl-5">
+          <v-flex class="d-flex align-center mb-4">
             <img
               src="@/assets/icons/button-back.svg"
               alt=""
@@ -26,7 +19,7 @@
         </v-col>
       </v-row>
       <v-row :class="{ 'mt-1': $vuetify.breakpoint.xsOnly }" class="px-4">
-        <v-col cols="12" md="6" sm="6" class="pa-1 pr-0">
+        <v-col cols="12" sm="12" class="pa-1 pr-0">
           <v-card class="browse-card-detail" elevation="0">
             <v-card-title class="mb-2">
               <h4 class="browse-card-title">Flower</h4>

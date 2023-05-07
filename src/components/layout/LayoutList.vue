@@ -4,7 +4,8 @@
       <v-col cols="12" md="8">
         <v-card elevation="0" class="d-flex justify-space-between mb-6">
           <v-card-title class="pa-0">
-            <h4>{{ title }}</h4>
+            <h4 v-if="$vuetify.breakpoint.smAndUp">{{ title }}</h4>
+            <h5 v-if="$vuetify.breakpoint.xsOnly">{{ title }}</h5>
           </v-card-title>
           <ButtonComponent
             title="Browse"

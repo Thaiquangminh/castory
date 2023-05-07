@@ -105,6 +105,11 @@ export default {
       &:last-child
         border-bottom: thin solid rgba(0, 0, 0, 0.12)
       td
+        font-weight: 600
+        &:nth-child(2)
+          color: #3887FE
+        &:nth-child(3)
+          color: #1BB763
         &:first-child
           border-left: thin solid rgba(0, 0, 0, 0.12)
         &:last-child

@@ -6,8 +6,8 @@ import ListView from "@/views/list/ListView.vue";
 import BrowseView from "@/views/browse/BrowseView.vue";
 import CardQuestionView from "@/views/card/CardQuestionView.vue";
 import CardAnswerView from "@/views/card/CardAnswerView.vue";
-import BrowseCardView from "@/views/browse/BrowseCardView.vue";
-import BrowseCardDetailView from "@/views/browse/BrowseCardDetailView.vue";
+import BrowseCardSetView from "@/views/browse/BrowseCardSetView.vue";
+import BrowseCardSetDetailView from "@/views/browse/BrowseCardSetDetailView.vue";
 
 Vue.use(VueRouter);
 
@@ -56,15 +56,15 @@ const routes = [
   },
   {
     path: "/browse/:id",
-    name: "browseCard",
-    component: BrowseCardView,
-    meta: { needLogin: true },
+    name: "browseCardSet",
+    component: BrowseCardSetView,
+    meta: { needLogin: true, onlyMobile: true },
   },
   {
     path: "/browse/card/:id",
-    name: "browseCardDetails",
-    component: BrowseCardDetailView,
-    meta: { needLogin: true },
+    name: "browseCardSetDetails",
+    component: BrowseCardSetDetailView,
+    meta: { needLogin: true, onlyMobile: true },
   },
 ];
 
@@ -80,6 +80,11 @@ router.beforeEach((to, from, next) => {
     next("/login");
   } else if (!to.meta.needLogin && !!localStorage.getItem("token")) {
     next("/list");
+  } else if (
+    to.meta.onlyMobile &&
+    JSON.parse(localStorage.getItem("mobileScreen")) === false
+  ) {
+    next("/browse");
   } else {
     next();
   }
