@@ -6,9 +6,9 @@
       @click="handleClickBtn"
       elevation="0"
     >
-      <v-icon v-if="prependIcon" class="mr-2" small>{{ prependIcon }}</v-icon>
+      <img :src="getIcon(prependIcon)" alt="" class="mr-2" v-if="prependIcon" />
       <h7>{{ title }}</h7>
-      <v-icon v-if="appendIcon" class="ml-3" small>{{ appendIcon }}</v-icon>
+      <img :src="getIcon(appendIcon)" alt="" class="ml-3" v-if="appendIcon" />
     </v-btn>
     <v-btn
       v-if="isGrayBtn"
@@ -16,9 +16,9 @@
       @click="handleClickBtn"
       elevation="0"
     >
-      <v-icon v-if="prependIcon" class="mr-2" small>{{ prependIcon }}</v-icon>
+      <img :src="getIcon(prependIcon)" alt="" class="mr-2" v-if="prependIcon" />
       <h7>{{ title }}</h7>
-      <v-icon v-if="appendIcon" class="ml-3" small>{{ appendIcon }}</v-icon>
+      <img :src="getIcon(appendIcon)" alt="" class="ml-3" v-if="appendIcon" />
     </v-btn>
   </div>
 </template>
@@ -45,6 +45,9 @@ export default {
   methods: {
     handleClickBtn() {
       this.$emit("click");
+    },
+    getIcon(name) {
+      return require("@/assets/icons/" + name + ".svg");
     },
   },
 };

@@ -4,7 +4,6 @@
     :headers="headers"
     :items="items"
     :hide-default-footer="true"
-    class="elevation-1"
     disable-pagination
     mobile-breakpoint="0"
     @click:row="(item) => handleNavigate(item.id)"
@@ -88,6 +87,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.v-data-table
+  border: 1px solid rgba(0, 0, 0, 0.12)
+  border-top-left-radius: 12px
+  border-top-right-radius: 12px
 ::v-deep .v-data-table__wrapper
   .v-data-table-header
     background-color: #453FE3 !important
@@ -95,23 +98,17 @@ export default {
       border-right: 1px solid
       color: #FFFFFF !important
       &:first-child
-        border-top-left-radius: 13px
+        border-top-left-radius: 12px
       &:last-child
-        border-top-right-radius: 13px
+        border-top-right-radius: 12px
         border-right: none
   tbody
     tr
       cursor: pointer
-      &:last-child
-        border-bottom: thin solid rgba(0, 0, 0, 0.12)
       td
         font-weight: 600
         &:nth-child(2)
           color: #3887FE
         &:nth-child(3)
           color: #1BB763
-        &:first-child
-          border-left: thin solid rgba(0, 0, 0, 0.12)
-        &:last-child
-          border-right: thin solid rgba(0, 0, 0, 0.12)
 </style>

@@ -17,6 +17,7 @@
           class="d-flex"
           style="max-width: 300px"
           v-if="getIsLoggedIn && $vuetify.breakpoint.smAndUp"
+          @click="handleShowDialog"
         >
           <v-flex class="d-flex justify-end align-center">
             <img
