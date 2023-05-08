@@ -12,11 +12,7 @@
       class="d-flex flex-column"
       :class="$vuetify.breakpoint.xsOnly ? 'mw-25' : ''"
     >
-      <ButtonComponent
-        title="Học lại"
-        prependIcon="fa-rotate-right"
-        isGrayBtn
-      />
+      <ButtonComponent title="Học lại" prepend-icon="reload" isGrayBtn />
       <captionOne class="text-center"> 1 phút </captionOne>
     </v-col>
     <!--    chọn option khó dễ -->

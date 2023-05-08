@@ -48,7 +48,7 @@
           </div>
           <ButtonComponent
             title="Đáp án"
-            append-icon="fa-arrow-right"
+            append-icon="arrow-right"
             @click="handleAnswer"
           />
         </div>
