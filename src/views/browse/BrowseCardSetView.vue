@@ -44,6 +44,7 @@
           <TableComponent
             :items="getCardSetDetails"
             :headers="cardSetDetailHeader"
+            :options="options"
             @navigate="handleGoBrowseCardDetails"
           />
         </v-col>
@@ -92,6 +93,20 @@ export default {
           value: "actions",
           sortable: false,
           align: "center",
+        },
+      ],
+      options: [
+        {
+          color: "color: #1BB763",
+          icon: "save",
+          title: "Lưu thẻ",
+          emitFunction: "save",
+        },
+        {
+          color: "color: #FD443A",
+          icon: "trash",
+          title: "Xoá thẻ",
+          emitFunction: "delete",
         },
       ],
     };

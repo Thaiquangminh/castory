@@ -6,8 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      userId: null,
-      token: null,
+      token_type: null,
+      access_token: null,
     };
   },
   actions: actions,

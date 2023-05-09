@@ -8,6 +8,7 @@ import CardQuestionView from "@/views/card/CardQuestionView.vue";
 import CardAnswerView from "@/views/card/CardAnswerView.vue";
 import BrowseCardSetView from "@/views/browse/BrowseCardSetView.vue";
 import BrowseCardSetDetailView from "@/views/browse/BrowseCardSetDetailView.vue";
+import TabsView from "@/views/admin/TabsView.vue";
 
 Vue.use(VueRouter);
 
@@ -66,6 +67,13 @@ const routes = [
     component: BrowseCardSetDetailView,
     meta: { needLogin: true, onlyMobile: true },
   },
+  //   ---------------admin----------------
+  {
+    path: "/manage",
+    name: "manage",
+    component: TabsView,
+    meta: { needLogin: true },
+  },
 ];
 
 const router = new VueRouter({
@@ -76,9 +84,9 @@ const router = new VueRouter({
 
 // ---------------- guard router using token in localStorage ---------------- /
 router.beforeEach((to, from, next) => {
-  if (to.meta.needLogin && !!localStorage.getItem("token") === false) {
+  if (to.meta.needLogin && !!localStorage.getItem("access_token") === false) {
     next("/login");
-  } else if (!to.meta.needLogin && !!localStorage.getItem("token")) {
+  } else if (!to.meta.needLogin && !!localStorage.getItem("access_token")) {
     next("/list");
   } else if (
     to.meta.onlyMobile &&

@@ -127,7 +127,6 @@ export default {
       this.$router.push(`/list`);
     },
     handleAnswer() {
-      console.log(this.answerValue);
       this.$router.push(`/answer/${this.setCardId}`);
     },
     //   ----------Delete card + back card from list cards action-------- //

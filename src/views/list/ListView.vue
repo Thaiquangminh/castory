@@ -3,6 +3,7 @@
     <TableComponent
       :items="listCards"
       :headers="tableHeaders"
+      :options="options"
       @navigate="handleNavigateToCard"
       @study="handleStudy"
       @randomStudy="handleRandomStudy"
@@ -46,6 +47,20 @@ export default {
           sortable: false,
         },
         { text: "", value: "actions", align: "center", sortable: false },
+      ],
+      options: [
+        {
+          color: "color: #1BB763",
+          icon: "bookmark",
+          title: "Ôn tập trước",
+          emitFunction: "study",
+        },
+        {
+          color: "color: #FD443A",
+          icon: "openbook",
+          title: "Ôn tập ngẫu nhiên",
+          emitFunction: "randomStudy",
+        },
       ],
     };
   },
