@@ -56,7 +56,7 @@
                     style="width: 32px; height: 32px"
                   />
                   <img
-                    src="@/assets/icons/ArrowDown.svg"
+                    src="@/assets/icons/arrow-down.svg"
                     style="width: 16px; height: 16px"
                     alt=""
                   />

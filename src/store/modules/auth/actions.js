@@ -1,30 +1,45 @@
+import axios from "axios";
+
 export default {
   async handleLogin(context, payload) {
-    const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBZkE7trQ2727WfSMSacjY4bRlXilz95jM",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: payload.username,
-          password: payload.password,
-          returnSecureToken: true,
-        }),
-      }
-    );
-
-    const data = await response.json();
-    if (response.status !== 200) {
-      const error = new Error(
-        data.message || "Your user name or password is wrong!"
-      );
-      throw error;
-    }
-    localStorage.setItem("userId", data.localId);
-    localStorage.setItem("token", data.idToken);
-    context.commit("handleLogin", {
-      token: data.idToken,
-      userId: data.localId,
-    });
+    let mainURI = "http://103.107.183.127:81/api/login";
+    await axios
+      .post(mainURI, {
+        user_name: payload.username,
+        password: payload.password,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status_code === 200) {
+          localStorage.setItem("token_type", res.data.token_type);
+          localStorage.setItem("access_token", res.data.access_token);
+          context.commit("handleLogin", {
+            access_token: res.data.access_token,
+            token_type: res.data.token_type,
+          });
+        } else {
+          const error = res.data.message || "Something is wrong!";
+          throw error;
+        }
+      });
+    //
+    // const data = await response.json();
+    // if (response.status === 200) {
+    //   if (data.status_code === 200) {
+    // localStorage.setItem("token_type", data.token_type);
+    // localStorage.setItem("access_token", data.access_token);
+    // context.commit("handleLogin", {
+    //   access_token: data.access_token,
+    //   token_type: data.token_type,
+    // });
+    //   } else {
+    //     // const error = new Error(data.message || "Something is wrong!");
+    //     // throw error;
+    //   }
+    // } else {
+    //   const error = new Error(data.message || "Something is wrong!");
+    //   throw error;
+    // }
   },
 
   handleSetToken(context, payload) {

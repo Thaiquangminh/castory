@@ -51,7 +51,7 @@
             class="ml-1 pb-0 d-flex flex-column"
             :class="{
               'd-flex justify-center': $vuetify.breakpoint.xsOnly,
-              'mb-15': isValidForm,
+              'mb-15': !errorMessage,
             }"
           >
             <div :class="$vuetify.breakpoint.xsOnly && 'text-center'">
@@ -59,8 +59,8 @@
                 Đăng nhập để bắt đầu học
               </text-averta-400>
             </div>
-            <div v-if="!isValidForm" class="mt-3 login-invalid-helper-text">
-              Your user name or password is wrong!
+            <div v-if="errorMessage" class="mt-3 login-invalid-helper-text">
+              {{ this.errorMessage }}
             </div>
           </v-card-subtitle>
           <!--  --------------------Start form-------------------- -->
@@ -70,7 +70,7 @@
                 :class="[
                   'login-group-form',
                   {
-                    'invalid-form': !isValidForm,
+                    'invalid-form': this.errorMessage,
                     'login-group-sm': $vuetify.breakpoint.xsOnly,
                   },
                 ]"
@@ -81,13 +81,14 @@
                 <InputComponent
                   :inputProps="usernameInput"
                   v-model.trim="username.value"
+                  @focus="handleClearError"
                 />
               </v-row>
               <v-row
                 :class="[
                   'login-group-form',
                   {
-                    'invalid-form': !isValidForm,
+                    'invalid-form': this.errorMessage,
                     'login-group-sm': $vuetify.breakpoint.xsOnly,
                   },
                 ]"
@@ -98,6 +99,7 @@
                 <InputComponent
                   :inputProps="passwordInput"
                   v-model.trim="password.value"
+                  @focus="handleClearError"
                 />
               </v-row>
               <v-row class="login-group-form">
@@ -130,6 +132,7 @@ export default {
         typeInput: "password",
         placeholder: "Điền mật khẩu",
         id: "password",
+        appendIcon: "fa-duotone fa-eye-slash",
       },
       username: {
         value: "",
@@ -139,7 +142,6 @@ export default {
         value: "",
         typeError: "",
       },
-      isValidForm: true,
       errorMessage: "",
     };
   },
@@ -151,44 +153,20 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["handleSetToken", "handleLogin"]),
-    validateForm() {
-      if (this.username.value === "") {
-        this.username.typeError = "empty";
-        this.isValidForm = false;
-      } else if (this.username.value.length < 6) {
-        this.username.typeError = "minlength";
-        this.isValidForm = false;
-      } else if (this.username.value.length > 127) {
-        this.username.typeError = "maxlength";
-        this.isValidForm = false;
-      }
-
-      if (this.password.value === "") {
-        this.password.typeError = "empty";
-        this.isValidForm = false;
-      } else if (this.password.value.length < 6) {
-        this.password.typeError = "minlength";
-        this.isValidForm = false;
-      } else if (this.password.value.length > 127) {
-        this.password.typeError = "maxlength";
-        this.isValidForm = false;
-      }
-    },
     async handleSubmit() {
-      this.isValidForm = true;
-      await this.validateForm();
-      if (this.isValidForm) {
-        try {
-          await this.handleLogin({
-            username: this.username.value,
-            password: this.password.value,
-          });
-        } catch (error) {
-          this.errorMessage = error;
-        }
-        // logic login here
-        this.token && (await this.$router.replace("/list"));
+      try {
+        await this.handleLogin({
+          username: this.username.value,
+          password: this.password.value,
+        });
+      } catch (error) {
+        this.errorMessage = error;
       }
+      // logic login here
+      this.token && (await this.$router.replace("/list"));
+    },
+    handleClearError() {
+      this.errorMessage = null;
     },
   },
 };

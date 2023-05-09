@@ -97,9 +97,7 @@ export default {
       this.handleRemoveProduct(this.setCardId);
     },
     //   handle study again
-    handleClickEasyType() {
-      console.log("con me may bo log dc r");
-    },
+    handleClickEasyType() {},
   },
   computed: {
     ...mapGetters("card", ["getSetCardId"]),

@@ -4,6 +4,7 @@ import list from "@/store/modules/list";
 import card from "@/store/modules/card";
 import auth from "@/store/modules/auth";
 import browse from "@/store/modules/browse";
+import admin from "@/store/modules/admin";
 
 Vue.use(Vuex);
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
     card: card,
     auth: auth,
     browse: browse,
+    admin: admin,
   },
 });

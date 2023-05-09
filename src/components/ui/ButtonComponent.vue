@@ -5,6 +5,7 @@
       class="blue-btn"
       @click="handleClickBtn"
       elevation="0"
+      :type="type"
     >
       <img :src="getIcon(prependIcon)" alt="" class="mr-2" v-if="prependIcon" />
       <h7>{{ title }}</h7>
@@ -25,6 +26,10 @@
 <script>
 export default {
   props: {
+    type: {
+      type: String,
+      default: "button",
+    },
     title: {
       type: String,
       default: "",
