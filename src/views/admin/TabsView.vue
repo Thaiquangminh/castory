@@ -11,7 +11,7 @@
       <v-tab href="#manage-student">
         <h7>Quản lý học sinh</h7>
       </v-tab>
-      <v-tab-item value="manage-student"> 2 </v-tab-item>
+      <v-tab-item value="manage-student"><ManageStudent /></v-tab-item>
 
       <v-tab href="#manage-study">
         <h7>Quản lý học tập</h7>
@@ -22,4 +22,5 @@
 </template>
 <script setup>
 import ManageOriginCardSet from "@/views/admin/ManageOriginCardSet.vue";
+import ManageStudent from "@/views/admin/ManageStudent.vue";
 </script>

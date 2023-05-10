@@ -170,7 +170,7 @@
     </v-dialog>
     <!-- ----------Delete folder and cancel add card------------ -->
     <v-dialog
-      v-if="typeDialog === 'delete-folder' || typeDialog === 'cancel-add-card'"
+      v-if="typeDialog === 'delete-admin' || typeDialog === 'cancel-add-card'"
       :value="showDialogValue"
       max-width="400"
       @click:outside="handleCloseDialog"
@@ -180,8 +180,8 @@
           <h5
             class="dialog-delete-title"
             v-text="
-              typeDialog === 'delete-folder'
-                ? 'Xoá bộ thẻ'
+              typeDialog === 'delete-admin'
+                ? 'Xoá vĩnh viễn'
                 : 'Tiếp tục tạo thẻ ?'
             "
           />
@@ -189,7 +189,7 @@
         <v-card-actions class="d-flex align-center pa-0">
           <v-spacer></v-spacer>
           <v-btn
-            v-if="typeDialog === 'delete-folder'"
+            v-if="typeDialog === 'delete-admin'"
             class="cancel-btn"
             elevation="0"
             @click="handleCloseDialog"
@@ -206,7 +206,7 @@
           </v-btn>
 
           <ButtonComponent
-            v-if="typeDialog === 'delete-folder'"
+            v-if="typeDialog === 'delete-admin'"
             :title="'Xoá'"
             class="ml-3"
             @click="handleConfirmRequest"
@@ -220,6 +220,103 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- ----------Add and edit admin user------------ -->
+    <v-dialog
+      v-if="typeDialog === 'add-admin'"
+      :value="showDialogValue"
+      max-width="400"
+      @click:outside="handleCloseDialog"
+    >
+      <form>
+        <v-card class="pa-8">
+          <v-row>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Họ và tên admin</h7>
+              </label>
+              <InputComponent inputProps="" class="mt-3" />
+            </v-col>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Username</h7>
+              </label>
+              <InputComponent inputProps="" class="mt-3" />
+            </v-col>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Password</h7>
+              </label>
+              <InputComponent inputProps="" class="mt-3" />
+            </v-col>
+          </v-row>
+          <v-spacer></v-spacer>
+          <v-card-actions class="d-flex align-center justify-end pa-0 mt-6">
+            <v-btn class="cancel-btn" elevation="0" @click="handleCloseDialog">
+              <h7>Huỷ</h7>
+            </v-btn>
+            <ButtonComponent
+              :title="'OK'"
+              class="ml-3"
+              @click="handleConfirmRequest"
+            />
+          </v-card-actions>
+        </v-card>
+      </form>
+    </v-dialog>
+    <!-- ----------Add and edit student user------------ -->
+    <v-dialog
+      v-if="typeDialog === 'add-student'"
+      :value="showDialogValue"
+      max-width="400"
+      @click:outside="handleCloseDialog"
+    >
+      <form>
+        <v-card class="pa-8">
+          <v-row>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Họ và tên</h7>
+              </label>
+              <InputComponent inputProps="" class="mt-3" />
+            </v-col>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Lớp</h7>
+              </label>
+              <v-select
+                :items="itemsSelect"
+                outlined
+                background-color="#F9FBFC"
+                class="mt-3 mb-n6"
+              />
+            </v-col>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Username</h7>
+              </label>
+              <InputComponent inputProps="" class="mt-3" />
+            </v-col>
+            <v-col cols="12" md="12" sm="12">
+              <label>
+                <h7>Password</h7>
+              </label>
+              <InputComponent inputProps="" class="mt-3" />
+            </v-col>
+          </v-row>
+          <v-spacer></v-spacer>
+          <v-card-actions class="d-flex align-center justify-end pa-0 mt-6">
+            <v-btn class="cancel-btn" elevation="0" @click="handleCloseDialog">
+              <h7>Huỷ</h7>
+            </v-btn>
+            <ButtonComponent
+              :title="'OK'"
+              class="ml-3"
+              @click="handleConfirmRequest"
+            />
+          </v-card-actions>
+        </v-card>
+      </form>
+    </v-dialog>
   </v-row>
 </template>
 
@@ -229,6 +326,20 @@ import InputComponent from "@/components/ui/InputComponent.vue";
 
 export default {
   components: { InputComponent, ButtonComponent },
+  props: {
+    showDialogValue: {
+      type: Boolean,
+      default: false,
+    },
+    typeDialog: {
+      type: String,
+      default: "delete",
+    },
+    itemsSelect: {
+      type: [],
+      default: () => [],
+    },
+  },
   data() {
     return {
       inputProps: {
@@ -241,16 +352,6 @@ export default {
         placeholder: "Nhập tên bộ thẻ",
       },
     };
-  },
-  props: {
-    showDialogValue: {
-      type: Boolean,
-      default: false,
-    },
-    typeDialog: {
-      type: String,
-      default: "delete",
-    },
   },
   methods: {
     handleCloseDialog() {

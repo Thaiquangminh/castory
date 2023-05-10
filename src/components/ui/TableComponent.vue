@@ -26,7 +26,7 @@
             v-for="(option, index) in options"
             :key="index"
             link
-            @click="handleEmit(option.emitFunction, item.id)"
+            @click="handleEmit(option.emitFunction, item)"
           >
             <v-img :src="option.icon && getIcon(option.icon)" alt="" />
             <v-list-item-title class="ml-4 d-flex">
@@ -63,8 +63,8 @@ export default {
     getIcon(name) {
       return require("@/assets/icons/" + name + ".svg");
     },
-    handleEmit(action, id) {
-      return this.$emit(action, id);
+    handleEmit(action, item) {
+      return this.$emit(action, item);
     },
     handleNavigate(id) {
       this.$emit("navigate", id);
