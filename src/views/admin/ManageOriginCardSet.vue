@@ -72,7 +72,7 @@
     </v-row>
 
     <DialogComponent
-      typeDialog="delete-folder"
+      typeDialog="delete-admin"
       :showDialogValue="showDialogDelete"
       @closeDialog="handleCloseDialog"
     />
