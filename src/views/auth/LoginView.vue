@@ -110,6 +110,8 @@
             </form>
           </v-card-text>
         </v-card>
+        <div>Username: user1@gmail.com</div>
+        <div>Pass: 123456</div>
       </v-col>
     </v-row>
   </v-container>
