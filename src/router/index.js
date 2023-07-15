@@ -72,7 +72,7 @@ const routes = [
     path: "/manage",
     name: "manage",
     component: TabsView,
-    meta: { needLogin: true },
+    // meta: { needLogin: true },
   },
 ];
 
