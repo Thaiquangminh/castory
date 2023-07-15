@@ -112,6 +112,12 @@
         </v-card>
         <div>Username: user1@gmail.com</div>
         <div>Pass: 123456</div>
+        <div
+          style="cursor: pointer; text-decoration: underline"
+          @click="$router.push('/manage')"
+        >
+          Go To Admin Page
+        </div>
       </v-col>
     </v-row>
   </v-container>
